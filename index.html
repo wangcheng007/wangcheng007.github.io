@@ -148,27 +148,22 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-first" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-css3_1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/09/first/">first</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/09/first/" class="archive-article-date">
-  	<time datetime="2017-02-09T12:22:05.988Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-09</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我我我我我我的撒来决定是  打了卡</p>
+        <h2 id="初识css3之选择器"><a href="#初识css3之选择器" class="headerlink" title="初识css3之选择器"></a>初识css3之选择器</h2><h3 id="1-属性选择器"><a href="#1-属性选择器" class="headerlink" title="1.属性选择器"></a>1.属性选择器</h3><p>实际用处并不大的^,$,*,分别代表开头，结尾，包含。<br>简单例子：  </p>
+<pre><code>a[class^=&quot;column&quot;]{background:red;}
+a[href$=&quot;.doc&quot;]{background:green;}
+a[title*=&quot;box&quot;]{background:blue;}
+</code></pre><p>分别代表：包含column 开头的类名，包含.doc 结尾的href属性，包含box的title属性。</p>
+<h3 id="2-伪类选择器"><a href="#2-伪类选择器" class="headerlink" title="2.伪类选择器"></a>2.伪类选择器</h3><p>常见的伪类选择器：<br>1.类型1：not，：root,：empty,：target(值得注意）</p>
+<p><code>#brand:target {
+  background: orange;
+  color: #fff;
+}</code>简单例子，这里选择器选择的就是id为brand的对象。开始不是出于出发状态，点击出发条件即<strong>#brand</strong>后触发。<br>2.类型2：first-child,last-child,nth-child(n),nth-last-child(n)  这类简单，基本就是一些匹配条件。  </p>
+<h3 id="3-伪元素"><a href="#3-伪元素" class="headerlink" title="3.伪元素"></a>3.伪元素</h3><p>enabled，disabled，checked，selection，read-only，read-write，before，after。</p>
 
       
 
@@ -181,7 +176,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/09/first/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/03/16/css3_1/">展开全文 >></a>
         </p>
       
 
@@ -199,35 +194,20 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-css3_2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/09/hello-world/" class="archive-article-date">
-  	<time datetime="2017-02-09T08:15:49.981Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-09</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>##初识css3之动画</p>
+<p>###1.css变形 </p>
+<p>####属性值：transform<br>旋转<strong>rotate</strong>，拉伸<strong>shew</strong>，缩放 <strong>scale</strong>，位移<strong>translate</strong>，以及矩阵 <strong>matrix</strong>。<br>说一下最后一个矩阵 <strong>matrix</strong>函数这个函数有6个参数  </p>
+<pre><code>transform：matrix（a,b,c,d,f,e）
+</code></pre><p>虽然这个函数的参数很多，实际上这些个参数对应的矩阵就是<br>a c e<br>b d f<br>0 0 1<br>就是这么简单的一个矩阵，那么按照我们的线代知识，这个矩阵和矩阵<br>x<br>y<br>1<br>这个矩阵相乘得到的就是矩阵就是<br>ax+cy+e<br>bx+dy+f<br>0+0+1<br>转变后的水平坐标就成了ax+cy+e，垂直坐标就成了bx+dy+f<br>举个例子：<br><code>transform： matrix(1,0,0,1,30,30)</code><br>现在我们假定原来的坐标是（0，0），那计算转换后的坐标焦点就成了（30，30），即坐标从（0，0）转换到了（30，30）。简而言之现在的<code>transform： matrix(1,0,0,1,30,30)</code>就相当于<code>transform： translate(30px,30px)</code>，这里值得要注意的地方是<strong>translate，shew，scale，rotate</strong>都是需要写上单位的。总结下来你就会发现<strong>matrix</strong>表现偏移就是<code>matrix(无关，无关，无关，无关，水平偏移，垂直偏移)</code>剩下的也就不必多说了，缩放对应的参数是 <strong>a和d</strong>，拉伸和旋转涉及到三角函数不想说话，拉伸和旋转其实使用 <strong>shew和rotate</strong>比使用 <strong>matrix</strong> 更为方便。</p>
+<p>####属性值：transition<br>该属性包括：<br><strong>transition-propety</strong>：设置变换的属性名称，默认为all，也可以指定特定的属性变换<br><strong>transition-duration</strong>：设置过度需要的时间<br><strong>transition-timing-function</strong>：规定速度效果的速度曲线，默认为ease（规定慢速开始，然后变快，然后慢速结束的过渡效果），其他的还有linear（规定以相同速度开始至结束的过渡效果）ease-in（规定以慢速开始的过渡效），ease-out（规定以慢速结束的过渡效果）和ease-in-out（规定以慢速开始和结束的过渡效果）。<br><strong>transition-delay</strong>：定义过度效果何时开始  </p>
+<p>###2.css动画  </p>
+<p>####keyframes 介绍<br>在css3中以@keyframes开始 后面跟上动画名称加{…}动画内容。</p>
+<p>####animation 属性介绍<br><strong>animation-name</strong>：要运行的动画名称<br><strong>animation-during</strong>：设置动画播放时间<br><strong>animation-timing-function</strong>：设置动画开始方式 （属性值与<strong>transition-timing-function</strong>相同）<br><strong>animation-delay</strong>：设置动画延后执行时间<br><strong>animation-iteration-count</strong>：设置动画的播放次数，通常为整数，如果设置为 <strong>infinte</strong>则一直循环动画<br><strong>animation-direction</strong>：设置动画的播放方向，默认值为 <strong>normal</strong>（每次都是向前播放），如果设置为 <strong>alternate</strong>（动画播放在第偶数次向前播放，第奇数次向反方向播放）。  </p>
 
       
 
@@ -240,7 +220,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/09/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/03/16/css3_2/">展开全文 >></a>
         </p>
       
 
