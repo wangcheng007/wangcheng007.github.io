@@ -168,7 +168,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="初识css3之选择器"><a href="#初识css3之选择器" class="headerlink" title="初识css3之选择器"></a>初识css3之选择器</h2><h3 id="1-属性选择器"><a href="#1-属性选择器" class="headerlink" title="1.属性选择器"></a>1.属性选择器</h3><p>实际用处并不大的^,$,*,分别代表开头，结尾，包含。<br>简单例子：  </p>
+        <h3 id="1-属性选择器"><a href="#1-属性选择器" class="headerlink" title="1.属性选择器"></a>1.属性选择器</h3><p>实际用处并不大的^,$,*,分别代表开头，结尾，包含。<br>简单例子：  </p>
 <pre><code>a[class^=&quot;column&quot;]{background:red;}
 a[href$=&quot;.doc&quot;]{background:green;}
 a[title*=&quot;box&quot;]{background:blue;}
@@ -213,7 +213,7 @@ a[title*=&quot;box&quot;]{background:blue;}
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/16/css3_2/">css3之动画</a>
+      <a class="article-title" href="/2017/03/16/css3_2/">css3之变形与动画</a>
     </h1>
   
 
@@ -226,7 +226,7 @@ a[title*=&quot;box&quot;]{background:blue;}
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="初识css3之动画"><a href="#初识css3之动画" class="headerlink" title="初识css3之动画"></a>初识css3之动画</h2><h3 id="1-css变形"><a href="#1-css变形" class="headerlink" title="1.css变形"></a>1.css变形</h3><h4 id="属性值：transform"><a href="#属性值：transform" class="headerlink" title="属性值：transform"></a>属性值：transform</h4><p>旋转 <strong>rotate</strong>，拉伸 <strong>shew</strong>，缩放 <strong>scale</strong>，位移 <strong>translate</strong>，以及矩阵       <strong>matrix</strong>。<br>说一下最后一个矩阵 <strong>matrix</strong> 函数这个函数有6个参数<br><code>transform：matrix（a,b,c,d,f,e）</code><br>虽然这个函数的参数很多，实际上这些个参数对应的矩阵就是<br>a c e<br>b d f<br>0 0 1<br>就是这么简单的一个矩阵，那么按照我们的线代知识，这个矩阵和矩阵<br>x<br>y<br>1<br>这个矩阵相乘得到的就是矩阵就是<br>ax+cy+e<br>bx+dy+f<br>0+0+1<br>转变后的水平坐标就成了ax+cy+e，垂直坐标就成了bx+dy+f<br>举个例子：<br><code>transform： matrix(1,0,0,1,30,30)</code><br>
+        <h3 id="1-css变形"><a href="#1-css变形" class="headerlink" title="1.css变形"></a>1.css变形</h3><h4 id="属性值：transform"><a href="#属性值：transform" class="headerlink" title="属性值：transform"></a>属性值：transform</h4><p>旋转 <strong>rotate</strong>，拉伸 <strong>shew</strong>，缩放 <strong>scale</strong>，位移 <strong>translate</strong>，以及矩阵       <strong>matrix</strong>。<br>说一下最后一个矩阵 <strong>matrix</strong> 函数这个函数有6个参数<br><code>transform：matrix（a,b,c,d,f,e）</code><br>虽然这个函数的参数很多，实际上这些个参数对应的矩阵就是<br>a c e<br>b d f<br>0 0 1<br>就是这么简单的一个矩阵，那么按照我们的线代知识，这个矩阵和矩阵<br>x<br>y<br>1<br>这个矩阵相乘得到的就是矩阵就是<br>ax+cy+e<br>bx+dy+f<br>0+0+1<br>转变后的水平坐标就成了ax+cy+e，垂直坐标就成了bx+dy+f<br>举个例子：<br><code>transform： matrix(1,0,0,1,30,30)</code><br>
         
           <a class="article-more-a" href="/2017/03/16/css3_2/#more">more >></a>
         
