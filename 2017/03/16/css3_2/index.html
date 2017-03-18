@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wangcheng007.github.io">
-  <title>我爱吃包子的博客</title>
+  <title>css3之动画 | 我爱吃包子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="初识css3之动画1.css变形属性值：transform旋转 rotate，拉伸 shew，缩放 scale，位移 translate，以及矩阵       matrix。说一下最后一个矩阵 matrix 函数这个函数有6个参数transform：matrix（a,b,c,d,f,e）虽然这个函数的参数很多，实际上这些个参数对应的矩阵就是a c eb d f0 0 1就是这么简单的一个矩阵，那么">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我爱吃包子的博客">
+<meta property="og:title" content="css3之动画">
 <meta property="og:url" content="http://wangcheng007.github.io/2017/03/16/css3_2/index.html">
 <meta property="og:site_name" content="我爱吃包子的博客">
 <meta property="og:description" content="初识css3之动画1.css变形属性值：transform旋转 rotate，拉伸 shew，缩放 scale，位移 translate，以及矩阵       matrix。说一下最后一个矩阵 matrix 函数这个函数有6个参数transform：matrix（a,b,c,d,f,e）虽然这个函数的参数很多，实际上这些个参数对应的矩阵就是a c eb d f0 0 1就是这么简单的一个矩阵，那么">
-<meta property="og:updated_time" content="2017-03-18T01:48:54.989Z">
+<meta property="og:updated_time" content="2017-03-18T01:53:45.177Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我爱吃包子的博客">
+<meta name="twitter:title" content="css3之动画">
 <meta name="twitter:description" content="初识css3之动画1.css变形属性值：transform旋转 rotate，拉伸 shew，缩放 scale，位移 translate，以及矩阵       matrix。说一下最后一个矩阵 matrix 函数这个函数有6个参数transform：matrix（a,b,c,d,f,e）虽然这个函数的参数很多，实际上这些个参数对应的矩阵就是a c eb d f0 0 1就是这么简单的一个矩阵，那么">
   
     <link rel="alternative" href="/atom.xml" title="我爱吃包子的博客" type="application/atom+xml">
@@ -150,6 +150,21 @@
             <article id="post-css3_2" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      css3之动画
+    </h1>
+  
+
+        
+        <a href="/2017/03/16/css3_2/" class="archive-article-date">
+  	<time datetime="2017-03-16T07:52:17.617Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-16</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="初识css3之动画"><a href="#初识css3之动画" class="headerlink" title="初识css3之动画"></a>初识css3之动画</h2><h3 id="1-css变形"><a href="#1-css变形" class="headerlink" title="1.css变形"></a>1.css变形</h3><h4 id="属性值：transform"><a href="#属性值：transform" class="headerlink" title="属性值：transform"></a>属性值：transform</h4><p>旋转 <strong>rotate</strong>，拉伸 <strong>shew</strong>，缩放 <strong>scale</strong>，位移 <strong>translate</strong>，以及矩阵       <strong>matrix</strong>。<br>说一下最后一个矩阵 <strong>matrix</strong> 函数这个函数有6个参数<br><code>transform：matrix（a,b,c,d,f,e）</code><br>虽然这个函数的参数很多，实际上这些个参数对应的矩阵就是<br>a c e<br>b d f<br>0 0 1<br>就是这么简单的一个矩阵，那么按照我们的线代知识，这个矩阵和矩阵<br>x<br>y<br>1<br>这个矩阵相乘得到的就是矩阵就是<br>ax+cy+e<br>bx+dy+f<br>0+0+1<br>转变后的水平坐标就成了ax+cy+e，垂直坐标就成了bx+dy+f<br>举个例子：<br><code>transform： matrix(1,0,0,1,30,30)</code><br><a id="more"></a><br>现在我们假定原来的坐标是（0，0），那计算转换后的坐标焦点就成了（30，30），即坐标从（0，0）转换到了（30，30）。简而言之现在的<code>transform： matrix(1,0,0,1,30,30)</code>就相当于<code>transform： translate(30px,30px)</code>，这里值得要注意的地方是 <strong>translate，shew，scale，rotate</strong> 都是需要写上单位的。总结下来你就会发现 <strong>matrix</strong> 表现偏移就是 <code>matrix(无关，无关，无关，无关，水平偏移，垂直偏移)</code> 剩下的也就不必多说了，缩放对应的参数是 <strong>a和d</strong> ，拉伸和旋转涉及到三角函数不想说话，拉伸和旋转其实使用 <strong>shew和rotate</strong> 比使用 <strong>matrix</strong> 更为方便。</p>
@@ -253,7 +268,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          css3之选择器
         
       </div>
     </a>
