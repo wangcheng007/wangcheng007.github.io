@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://wangcheng007.github.io/2017/03/16/css3_2/index.html">
 <meta property="og:site_name" content="我爱吃包子的博客">
 <meta property="og:description" content="1.css变形属性值：transform旋转 rotate，拉伸 shew，缩放 scale，位移 translate，以及矩阵       matrix。说一下最后一个矩阵 matrix 函数这个函数有6个参数transform：matrix（a,b,c,d,f,e）虽然这个函数的参数很多，实际上这些个参数对应的矩阵就是a c eb d f0 0 1就是这么简单的一个矩阵，那么按照我们的线代知识">
-<meta property="og:updated_time" content="2017-03-18T01:57:35.754Z">
+<meta property="og:updated_time" content="2017-03-18T02:02:22.580Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css3之变形与动画">
 <meta name="twitter:description" content="1.css变形属性值：transform旋转 rotate，拉伸 shew，缩放 scale，位移 translate，以及矩阵       matrix。说一下最后一个矩阵 matrix 函数这个函数有6个参数transform：matrix（a,b,c,d,f,e）虽然这个函数的参数很多，实际上这些个参数对应的矩阵就是a c eb d f0 0 1就是这么简单的一个矩阵，那么按照我们的线代知识">
@@ -68,8 +68,6 @@
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
-    			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
     			
             
     			
@@ -200,6 +198,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">css3</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">简单</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -315,7 +328,7 @@
 		open_in_new: false,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -332,8 +345,6 @@
       
     
       
-      
-      
     
       
       
@@ -345,15 +356,13 @@
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -424,22 +433,6 @@
     	</section>
     
 
-    
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
     
 
     
