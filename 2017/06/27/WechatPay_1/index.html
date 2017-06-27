@@ -6,32 +6,45 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wangcheng007.github.io">
-  <title>css3之选择器 | 我爱吃包子的博客</title>
+  <title>我爱吃包子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.属性选择器实际用处并不大的^,$,*,分别代表开头，结尾，包含。简单例子：  
-a[class^=&amp;quot;column&amp;quot;]{background:red;}
-a[href$=&amp;quot;.doc&amp;quot;]{background:green;}
-a[title*=&amp;quot;box&amp;quot;]{background:blue;}
-分别代表：包含column 开头的类名，包含.">
+  <meta name="description" content="微信支付开发总结前言
+前段时间开发了一个基于微信的电商平台，里面有涉及到微信公众号支付，不断踩坑。
+一、微信支付开发的基本流程微信开发分为三个流程 
+
+
+1.通过code授权用户权限获取用户的openid
+2.通过获取的 openid ，商户的 appid ，商户key，商户的mch_ID，统一下单 获取预下单的ID
+3.通过预下单的ID发起支付请求。
+
+二、通过code授权用户权限获取用户的op">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css3之选择器">
-<meta property="og:url" content="http://wangcheng007.github.io/2017/03/16/css3_1/index.html">
+<meta property="og:title" content="我爱吃包子的博客">
+<meta property="og:url" content="http://wangcheng007.github.io/2017/06/27/WechatPay_1/index.html">
 <meta property="og:site_name" content="我爱吃包子的博客">
-<meta property="og:description" content="1.属性选择器实际用处并不大的^,$,*,分别代表开头，结尾，包含。简单例子：  
-a[class^=&amp;quot;column&amp;quot;]{background:red;}
-a[href$=&amp;quot;.doc&amp;quot;]{background:green;}
-a[title*=&amp;quot;box&amp;quot;]{background:blue;}
-分别代表：包含column 开头的类名，包含.">
-<meta property="og:image" content="http://on3r0omz6.bkt.clouddn.com/52.jpg">
-<meta property="og:updated_time" content="2017-03-20T07:33:42.327Z">
+<meta property="og:description" content="微信支付开发总结前言
+前段时间开发了一个基于微信的电商平台，里面有涉及到微信公众号支付，不断踩坑。
+一、微信支付开发的基本流程微信开发分为三个流程 
+
+
+1.通过code授权用户权限获取用户的openid
+2.通过获取的 openid ，商户的 appid ，商户key，商户的mch_ID，统一下单 获取预下单的ID
+3.通过预下单的ID发起支付请求。
+
+二、通过code授权用户权限获取用户的op">
+<meta property="og:updated_time" content="2017-06-27T01:20:22.741Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="css3之选择器">
-<meta name="twitter:description" content="1.属性选择器实际用处并不大的^,$,*,分别代表开头，结尾，包含。简单例子：  
-a[class^=&amp;quot;column&amp;quot;]{background:red;}
-a[href$=&amp;quot;.doc&amp;quot;]{background:green;}
-a[title*=&amp;quot;box&amp;quot;]{background:blue;}
-分别代表：包含column 开头的类名，包含.">
-<meta name="twitter:image" content="http://on3r0omz6.bkt.clouddn.com/52.jpg">
+<meta name="twitter:title" content="我爱吃包子的博客">
+<meta name="twitter:description" content="微信支付开发总结前言
+前段时间开发了一个基于微信的电商平台，里面有涉及到微信公众号支付，不断踩坑。
+一、微信支付开发的基本流程微信开发分为三个流程 
+
+
+1.通过code授权用户权限获取用户的openid
+2.通过获取的 openid ，商户的 appid ，商户key，商户的mch_ID，统一下单 获取预下单的ID
+3.通过预下单的ID发起支付请求。
+
+二、通过code授权用户权限获取用户的op">
   
     <link rel="alternative" href="/atom.xml" title="我爱吃包子的博客" type="application/atom+xml">
   
@@ -159,40 +172,167 @@ a[title*=&amp;quot;box&amp;quot;]{background:blue;}
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-css3_1" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-WechatPay_1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      css3之选择器
-    </h1>
-  
-
-        
-        <a href="/2017/03/16/css3_1/" class="archive-article-date">
-  	<time datetime="2017-03-16T07:52:17.619Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-16</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-属性选择器"><a href="#1-属性选择器" class="headerlink" title="1.属性选择器"></a>1.属性选择器</h3><p>实际用处并不大的^,$,*,分别代表开头，结尾，包含。<br>简单例子：  </p>
-<pre><code>a[class^=&quot;column&quot;]{background:red;}
-a[href$=&quot;.doc&quot;]{background:green;}
-a[title*=&quot;box&quot;]{background:blue;}
-</code></pre><p>分别代表：包含column 开头的类名，包含.doc 结尾的href属性，包含box的title属性。</p>
-<h3 id="2-伪类选择器"><a href="#2-伪类选择器" class="headerlink" title="2.伪类选择器"></a>2.伪类选择器</h3><p>常见的伪类选择器： </p>
- <a id="more"></a>
-<p>1.类型1：not，：root,：empty,：target(值得注意）</p>
-<p><code>#brand:target {
-  background: orange;
-  color: #fff;
-}</code>简单例子，这里选择器选择的就是id为brand的对象。开始不是出于出发状态，点击出发条件即<strong>#brand</strong>后触发。<br>2.类型2：first-child,last-child,nth-child(n),nth-last-child(n)  这类简单，基本就是一些匹配条件。  </p>
-<h3 id="3-伪元素"><a href="#3-伪元素" class="headerlink" title="3.伪元素"></a>3.伪元素</h3><p>enabled，disabled，checked，selection，read-only，read-write，before，after。</p>
-<p><img src="http://on3r0omz6.bkt.clouddn.com/52.jpg" alt=""></p>
+        <h2 id="微信支付开发总结"><a href="#微信支付开发总结" class="headerlink" title="微信支付开发总结"></a>微信支付开发总结</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>前段时间开发了一个基于微信的电商平台，里面有涉及到微信公众号支付，不断踩坑。</p>
+<h3 id="一、微信支付开发的基本流程"><a href="#一、微信支付开发的基本流程" class="headerlink" title="一、微信支付开发的基本流程"></a>一、微信支付开发的基本流程</h3><p>微信开发分为三个流程 </p>
+</blockquote>
+<ul>
+<li>1.通过code授权用户权限获取用户的openid</li>
+<li>2.通过获取的 openid ，商户的 appid ，商户key，商户的mch_ID，统一下单 获取预下单的ID</li>
+<li>3.通过预下单的ID发起支付请求。</li>
+</ul>
+<h3 id="二、通过code授权用户权限获取用户的openid"><a href="#二、通过code授权用户权限获取用户的openid" class="headerlink" title="二、通过code授权用户权限获取用户的openid"></a>二、通过code授权用户权限获取用户的openid</h3><ul>
+<li>第一步通过code获取openID，我的队友 已经获取到了openID 这里 就跳过</li>
+</ul>
+<h3 id="三、通过openID-统一下单获取预下单的ID"><a href="#三、通过openID-统一下单获取预下单的ID" class="headerlink" title="三、通过openID 统一下单获取预下单的ID"></a>三、通过openID 统一下单获取预下单的ID</h3><blockquote>
+<ul>
+<li>1、建立Payinfo 实体类</li>
+</ul>
+</blockquote>
+<pre><code>public class Payinfo implements Serializable {
+    private static final long serialVersionUID = 5637164279924222380L;
+    private String appid;
+    private String mch_id;
+    private String device_info;
+    private String nonce_str;
+    private String sign;
+    private String body;
+    private String attach;
+    private String out_trade_no;
+    private int total_fee;
+    private String spbill_create_ip;
+    private String notify_url;
+    private String trade_type;
+    private String openid;
+    //get（） set（）方法
+}
+</code></pre><blockquote>
+<ul>
+<li>2、包装实体</li>
+</ul>
+</blockquote>
+<pre><code>Payinfo payInfo = new Payinfo();
+payInfo.setAppid(&quot;xxxxxxxxxxxx&quot;); //填公众号的APPID
+payInfo.setDevice_info(&quot;WEB&quot;);
+payInfo.setMch_id(&quot;xxxxxxxx&quot;);//填商户的ID
+payInfo.setNonce_str(CommonUtil.create_nonce_str().replace(&quot;-&quot;, &quot;&quot;));//随机字符串
+payInfo.setBody(&quot;xxxxxxx&quot;);//设置支付的名称
+payInfo.setOut_trade_no(out_trade_no + tt);//下单的订单号 唯一
+payInfo.setTotal_fee((int) total_fee);//下单的金额 单位分
+payInfo.setSpbill_create_ip(CommonUtil.getIpAddr(request));//获取ip地址
+payInfo.setNotify_url(notify_url);//回调的url
+payInfo.setTrade_type(&quot;JSAPI&quot;);//支付类型
+payInfo.setOpenid(openId);//客户的openID
+
+随机字符串的获取 CommonUtil.java
+public static String create_nonce_str() {
+    return UUID.randomUUID().toString().replace(&quot;-&quot;, &quot;&quot;);
+}
+
+IP地址的获取 CommonUtil.java
+public static String getIpAddr(HttpServletRequest request) {
+    InetAddress addr = null;
+    try {
+        addr = InetAddress.getLocalHost();
+    } catch (UnknownHostException e) {
+        return request.getRemoteAddr();
+    }
+    byte[] ipAddr = addr.getAddress();
+    String ipAddrStr = &quot;&quot;;
+    for (int i = 0; i &lt; ipAddr.length; i++) {
+        if (i &gt; 0) {
+            ipAddrStr += &quot;.&quot;;
+        }
+        ipAddrStr += ipAddr[i] &amp; 0xFF;
+    }
+    return ipAddrStr;
+}
+
+统一下单签名的获取（所有的签名必须转换为大写）
+public String getSign(Payinfo payInfo) throws Exception {
+    String signTemp = 
+            &quot;appid=&quot; + payInfo.getAppid() 
+            + &quot;&amp;body=&quot; + payInfo.getBody() 
+            + &quot;&amp;device_info=&quot; + payInfo.getDevice_info() 
+            + &quot;&amp;mch_id=&quot; + payInfo.getMch_id()
+            + &quot;&amp;nonce_str=&quot; + payInfo.getNonce_str() 
+            + &quot;&amp;notify_url=&quot; + payInfo.getNotify_url() 
+            + &quot;&amp;openid=&quot; + payInfo.getOpenid()
+            + &quot;&amp;out_trade_no=&quot; + payInfo.getOut_trade_no()
+            + &quot;&amp;spbill_create_ip=&quot; + payInfo.getSpbill_create_ip()
+            + &quot;&amp;total_fee=&quot; + payInfo.getTotal_fee() 
+            + &quot;&amp;trade_type=&quot; + payInfo.getTrade_type()
+            + &quot;&amp;key=&quot;xxxxxxxxxxx&quot;; // 这个key注意为32位
+
+    MessageDigest md5 = MessageDigest.getInstance(&quot;MD5&quot;);
+    md5.reset();
+    md5.update(signTemp.getBytes(&quot;UTF-8&quot;));
+    String sign = CommonUtil.byteToStr(md5.digest()).toUpperCase();
+    return sign;
+}
+</code></pre><blockquote>
+<ul>
+<li>3、将实体包装成xml</li>
+</ul>
+</blockquote>
+<pre><code>private static XStream xstream = new XStream(new XppDriver() {
+    public HierarchicalStreamWriter createWriter(Writer out) {
+        return new PrettyPrintWriter(out) {
+            // 增加CDATA标记
+            boolean cdata = true;
+
+            @SuppressWarnings(&quot;rawtypes&quot;)
+            public void startNode(String name, Class clazz) {
+                super.startNode(name, clazz);
+            }
+
+            protected void writeText(QuickWriter writer, String text) {
+                if (cdata) {
+                    writer.write(&quot;&lt;![CDATA[&quot;);
+                    writer.write(text);
+                    writer.write(&quot;]]&gt;&quot;);
+                } else {
+                    writer.write(text);
+                }
+            }
+        };
+    }
+});
+
+public static String payInfoToXML(Payinfo pi) {
+    xstream.alias(&quot;xml&quot;, pi.getClass());
+    return xstream.toXML(pi);
+}
+</code></pre><blockquote>
+<ul>
+<li>4、改变xml的格式并发送到微信的服务器，获取返回的值 并且打印日志 查看信息 </li>
+</ul>
+</blockquote>
+<pre><code>Map&lt;String, String&gt; map = CommonUtil.httpsRequestToXML(
+        &quot;https://api.mch.weixin.qq.com/pay/unifiedorder&quot;,
+        &quot;POST&quot;,
+        payInfoToXML(payInfo).replace(&quot;__&quot;, &quot;_&quot;).replace(&quot;&lt;![CDATA[&quot;, &quot;&quot;).replace(&quot;]]&gt;&quot;, &quot;&quot;));
+
+System.out.println(&quot;------------------------&quot;);
+System.out.println(&quot;map 是&quot; + map);
+System.out.println(&quot;return_code 是&quot; + map.get(&quot;return_code&quot;));
+System.out.println(&quot;return_msg 是&quot; + map.get(&quot;return_msg&quot;));
+System.out.println(&quot;prepay_id 是&quot; + map.get(&quot;prepay_id&quot;));
+</code></pre><blockquote>
+<ul>
+<li>5、遇到的坑</li>
+</ul>
+</blockquote>
+<ul>
+<li>下单时，金额报错，金额的类型是int类型，单位是分</li>
+<li>下单时，签名错误，签名是根据编码从小到大排列先把支付实体包装好，最后再加上key</li>
+</ul>
+<p>今天就到这里，第三步，请看下篇文章。</p>
 
       
 
@@ -222,21 +362,6 @@ a[title*=&quot;box&quot;]{background:blue;}
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">css3</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">简单</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -287,7 +412,7 @@ a[title*=&quot;box&quot;]{background:blue;}
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://wangcheng007.github.io/2017/03/16/css3_1/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://wangcheng007.github.io/2017/06/27/WechatPay_1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -301,18 +426,9 @@ a[title*=&quot;box&quot;]{background:blue;}
   
 <nav id="article-nav">
   
-    <a href="/2017/06/27/WechatPay_1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/16/css3_2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">css3之变形与动画</div>
+    <a href="/2017/03/16/css3_1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">css3之选择器</div>
       <i class="icon-circle-right"></i>
     </a>
   
