@@ -6,17 +6,39 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wangcheng007.github.io">
-  <title>Tag: 简单 | 我爱吃包子的博客</title>
+  <title>微信公众号支付开发总结二 | 我爱吃包子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="start from zero">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我爱吃包子的博客">
-<meta property="og:url" content="http://wangcheng007.github.io/tags/简单/index.html">
+  <meta name="description" content="前言
+接着昨天的写。微信公众号支付开发的第三步，也是最后一步，通过预下单的ID发起支付请求。
+
+通过预下单的ID发起支付请求
+获取signature 这里采用SHA－１　加密方法（必为无论新版旧版） 
+
+String timestamp = myDate.getTime() / 1000 + &amp;quot;&amp;quot;;
+String nonce_str = CommonUtil.create_no">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信公众号支付开发总结二">
+<meta property="og:url" content="http://wangcheng007.github.io/2017/06/28/WeChatPay_2/index.html">
 <meta property="og:site_name" content="我爱吃包子的博客">
-<meta property="og:description" content="start from zero">
+<meta property="og:description" content="前言
+接着昨天的写。微信公众号支付开发的第三步，也是最后一步，通过预下单的ID发起支付请求。
+
+通过预下单的ID发起支付请求
+获取signature 这里采用SHA－１　加密方法（必为无论新版旧版） 
+
+String timestamp = myDate.getTime() / 1000 + &amp;quot;&amp;quot;;
+String nonce_str = CommonUtil.create_no">
+<meta property="og:updated_time" content="2017-06-28T14:38:03.264Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我爱吃包子的博客">
-<meta name="twitter:description" content="start from zero">
+<meta name="twitter:title" content="微信公众号支付开发总结二">
+<meta name="twitter:description" content="前言
+接着昨天的写。微信公众号支付开发的第三步，也是最后一步，通过预下单的ID发起支付请求。
+
+通过预下单的ID发起支付请求
+获取signature 这里采用SHA－１　加密方法（必为无论新版旧版） 
+
+String timestamp = myDate.getTime() / 1000 + &amp;quot;&amp;quot;;
+String nonce_str = CommonUtil.create_no">
   
     <link rel="alternative" href="/atom.xml" title="我爱吃包子的博客" type="application/atom+xml">
   
@@ -144,106 +166,260 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-WeChatPay_2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/16/css3_1/" class="archive-article-date">
-  	<time datetime="2017-03-16T07:52:17.619Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-16</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/16/css3_1/">css3之选择器</a>
+    <h1 class="article-title" itemprop="name">
+      微信公众号支付开发总结二
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/06/28/WeChatPay_2/" class="archive-article-date">
+  	<time datetime="2017-06-28T14:38:17.937Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>接着昨天的写。微信公众号支付开发的第三步，也是最后一步，通过预下单的ID发起支付请求。</p>
+</blockquote>
+<h3 id="通过预下单的ID发起支付请求"><a href="#通过预下单的ID发起支付请求" class="headerlink" title="通过预下单的ID发起支付请求"></a>通过预下单的ID发起支付请求</h3><blockquote>
+<p>获取signature 这里采用SHA－１　加密方法（必为无论新版旧版） </p>
+</blockquote>
+<pre><code>String timestamp = myDate.getTime() / 1000 + &quot;&quot;;
+String nonce_str = CommonUtil.create_nonce_str();
+String string1;
+String signature = &quot;&quot;;
+
+String jsapi_ticket = WeixinUtil.getjsapi_ticket();
+// 注意这里参数名必须全部小写，且必须有序
+//jsapi_ticket 每7200秒 更新一次 建议写入进程 自动获取
+string1 = &quot;jsapi_ticket=&quot; + jsapi_ticket + &quot;&amp;noncestr=&quot; + nonce_str
+        + &quot;&amp;timestamp=&quot; + timestamp + &quot;&amp;url=&quot; + url;
+try {
+    MessageDigest crypt = MessageDigest.getInstance(&quot;SHA-1&quot;);
+    crypt.reset();
+    crypt.update(string1.getBytes(&quot;UTF-8&quot;));
+    signature = CommonUtil.byteToStr(crypt.digest());
+} catch (NoSuchAlgorithmException e) {
+    e.printStackTrace();
+} catch (UnsupportedEncodingException e) {
+    e.printStackTrace();
+}
+
+Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();
+map.put(&quot;noncestr&quot;, nonce_str);
+map.put(&quot;timestamp&quot;, timestamp);
+map.put(&quot;signature&quot;, signature);
+
+public static String byteToStr(byte[] byteArray) {
+    String strDigest = &quot;&quot;;
+    for (int i = 0; i &lt; byteArray.length; i++) {
+        strDigest += byteToHexStr(byteArray[i]);
+    }
+    return strDigest;
+}
+
+public static String byteToHexStr(byte bytes) {
+    char[] Digit = { &apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;, &apos;A&apos;,
+            &apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;, &apos;F&apos; };
+    char[] tempArr = new char[2];
+    tempArr[0] = Digit[(bytes &gt;&gt;&gt; 4) &amp; 0X0F];
+    tempArr[1] = Digit[bytes &amp; 0X0F];
+
+    String s = new String(tempArr);
+    return s;
+}
+</code></pre><a id="more"></a>
+<blockquote>
+<p>注入微信config，这里的参数为上面生成signature的参数值</p>
+</blockquote>
+<pre><code>wx.config({
+    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+    appId: &apos;wx7c1af8e43fa7304d&apos;, // 必填，公众号的唯一标识
+    timestamp: timestamp, // 必填，生成签名的时间戳
+    nonceStr: nonceStr, // 必填，生成签名的随机串
+    signature: signature,// 必填，签名，见附录1
+    jsApiList: [&apos;chooseWXPay&apos;] // 必填，需要使用的JS接口列表，这里只写支付的
+}); 
+</code></pre><blockquote>
+<p>再算签名</p>
+</blockquote>
+<pre><code>String nonce = CommonUtil.create_nonce_str().replace(&quot;-&quot;, &quot;&quot;);
+   Date myDate = new Date();
+   String timestamp = myDate.getTime() / 1000 + &quot;&quot;;
+   // 再算签名
+   String newPrepay_id = &quot;prepay_id=&quot; + prepay_id;
+   String args = 
+           &quot;appId=wx7c1af8e43fa7304d&quot;
+           + &quot;&amp;nonceStr=&quot; + nonce
+           + &quot;&amp;package=&quot; + newPrepay_id 
+           + &quot;&amp;signType=MD5&quot; 
+           + &quot;&amp;timeStamp=&quot;+ timestamp //此处timeStamp 为大写 S 。绝对注意
+           + &quot;&amp;key=cqutcqutcqutcqutcqutcqutcqutcqut&quot;;
+
+
+   MessageDigest md5 = MessageDigest.getInstance(&quot;MD5&quot;);
+   md5.reset();
+   md5.update(args.getBytes(&quot;UTF-8&quot;));
+   String paySign = CommonUtil.byteToStr(md5.digest()).toUpperCase();
+
+   Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();
+   map.put(&quot;noncestr&quot;, nonce);
+   map.put(&quot;timestamp&quot;, timestamp);
+   map.put(&quot;prepay_id&quot;, newPrepay_id);
+   map.put(&quot;paySign&quot;, paySign);
+</code></pre><blockquote>
+<p>调用js 发起微信支付请求，这次数据第二次获取签名的数据值</p>
+</blockquote>
+<pre><code>wx.chooseWXPay({
+            timestamp : back.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但                  最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+            nonceStr : back.noncestr, // 支付签名随机串，不长于 32 位
+            package : back.prepay_id, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+            signType : &quot;MD5&quot;, // 签名方式，默认为&apos;SHA1&apos;，使用新版支付需传入&apos;MD5&apos;
+            paySign : back.paySign,
+            success : function(res) {
+
+            }
+</code></pre><p>}）</p>
+<blockquote>
+<p>遇到的坑</p>
+</blockquote>
+<ul>
+<li>获取第一次签名是采用的加密方式是 ＳＨＡ－１　也不用转换成大写</li>
+<li>注入weixin.config　时间戳timestamp　中的<strong>s</strong>为小写　第一次签名是也为小写</li>
+<li>第二次算签名package的值应该为  <strong>“prepay_id=” + prepay_id</strong> 前面加上</li>
+<li>第二次算签名时时间戳timeStamp的<strong>S</strong>为大写，大写，大写。重要的事情说三遍</li>
+<li>发起支付请求时各参数为获取第二次签名时的参数值</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">css3</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">简单</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">微信公众号支付</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://wangcheng007.github.io/2017/06/28/WeChatPay_2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/16/css3_2/" class="archive-article-date">
-  	<time datetime="2017-03-16T07:52:17.617Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-16</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/16/css3_2/">css3之变形与动画</a>
-    </h1>
+  
+    <a href="/2017/06/27/WechatPay_1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">微信公众号支付开发总结一</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">css3</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">简单</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -266,9 +442,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

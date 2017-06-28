@@ -48,7 +48,7 @@
 			<img src="/uploads/51.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">叫我包子就好了</a></h1>
+		  <h1 class="header-author"><a href="/">我爱吃包子</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">喜欢没事瞎折腾，喜欢烹饪，虽然厨艺不咋地，就这样。。。</p>
@@ -102,7 +102,7 @@
 				<img src="/uploads/51.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">叫我包子就好了</h1>
+			  <h1 class="header-author js-header-author">我爱吃包子</h1>
 			</hgroup>
 			
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>喜欢没事瞎折腾，喜欢烹饪，虽然厨艺不咋地，就这样。。。<i class="icon icon-quo-right"></i></p>
@@ -146,6 +146,120 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-WeChatPay_2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/28/WeChatPay_2/">微信公众号支付开发总结二</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/28/WeChatPay_2/" class="archive-article-date">
+  	<time datetime="2017-06-28T14:38:17.937Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>接着昨天的写。微信公众号支付开发的第三步，也是最后一步，通过预下单的ID发起支付请求。</p>
+</blockquote>
+<h3 id="通过预下单的ID发起支付请求"><a href="#通过预下单的ID发起支付请求" class="headerlink" title="通过预下单的ID发起支付请求"></a>通过预下单的ID发起支付请求</h3><blockquote>
+<p>获取signature 这里采用SHA－１　加密方法（必为无论新版旧版） </p>
+</blockquote>
+<pre><code>String timestamp = myDate.getTime() / 1000 + &quot;&quot;;
+String nonce_str = CommonUtil.create_nonce_str();
+String string1;
+String signature = &quot;&quot;;
+
+String jsapi_ticket = WeixinUtil.getjsapi_ticket();
+// 注意这里参数名必须全部小写，且必须有序
+//jsapi_ticket 每7200秒 更新一次 建议写入进程 自动获取
+string1 = &quot;jsapi_ticket=&quot; + jsapi_ticket + &quot;&amp;noncestr=&quot; + nonce_str
+        + &quot;&amp;timestamp=&quot; + timestamp + &quot;&amp;url=&quot; + url;
+try {
+    MessageDigest crypt = MessageDigest.getInstance(&quot;SHA-1&quot;);
+    crypt.reset();
+    crypt.update(string1.getBytes(&quot;UTF-8&quot;));
+    signature = CommonUtil.byteToStr(crypt.digest());
+} catch (NoSuchAlgorithmException e) {
+    e.printStackTrace();
+} catch (UnsupportedEncodingException e) {
+    e.printStackTrace();
+}
+
+Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();
+map.put(&quot;noncestr&quot;, nonce_str);
+map.put(&quot;timestamp&quot;, timestamp);
+map.put(&quot;signature&quot;, signature);
+
+public static String byteToStr(byte[] byteArray) {
+    String strDigest = &quot;&quot;;
+    for (int i = 0; i &lt; byteArray.length; i++) {
+        strDigest += byteToHexStr(byteArray[i]);
+    }
+    return strDigest;
+}
+
+public static String byteToHexStr(byte bytes) {
+    char[] Digit = { &apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;, &apos;A&apos;,
+            &apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;, &apos;F&apos; };
+    char[] tempArr = new char[2];
+    tempArr[0] = Digit[(bytes &gt;&gt;&gt; 4) &amp; 0X0F];
+    tempArr[1] = Digit[bytes &amp; 0X0F];
+
+    String s = new String(tempArr);
+    return s;
+}
+</code></pre>
+        
+          <a class="article-more-a" href="/2017/06/28/WeChatPay_2/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">微信公众号支付</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/28/WeChatPay_2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-WechatPay_1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -153,7 +267,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/27/WechatPay_1/">微信支付开发总结</a>
+      <a class="article-title" href="/2017/06/27/WechatPay_1/">微信公众号支付开发总结一</a>
     </h1>
   
 
@@ -192,7 +306,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">微信支付</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">微信公众号支付</a>
         		</li>
       		
 		</ul>
@@ -371,7 +485,7 @@ a[title*=&quot;box&quot;]{background:blue;}
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 叫我包子就好了
+    		&copy; 2017 我爱吃包子
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -446,7 +560,7 @@ a[title*=&quot;box&quot;]{background:blue;}
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">微信支付</a>
+                <a href="javascript:void(0)" class="js-tag color3">微信公众号支付</a>
               </li>
              
               <li class="article-tag-list-item">
