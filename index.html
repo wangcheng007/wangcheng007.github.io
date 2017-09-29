@@ -1003,12 +1003,8 @@ var f = new Foo(&apos;zhangsan&apos;, 20);
 <li>所有的引用类型都有一个__proto__属性，属性值为普通的对象</li>
 <li>所有的函数有一个prototype 属性</li>
 <li><p>所有的引用类型__proto__指向 构造函数的 prototype</p>
-<pre><code>var ojj = {};
-var obj = {}; obj.a = 100;
-var arr = []; arr.a = 100;
-function fn(){}
-fn.a = 100;
-</code></pre></li>
+<p>  var obj = {}; obj.a = 100;<br>  var arr = []; arr.a = 100;<br>  function fn(){}<br>  fn.a = 100;</p>
+</li>
 <li><p>当试图得到一个对象的某个属性时，如果这个对象本身没有这个属性，那么它会去他的__proto__中寻找</p>
 <pre><code>function Foo(name){
     this.name = name;

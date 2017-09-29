@@ -38,7 +38,7 @@ zepto源码中如何使用原型链
 
 var f = new Foo(&amp;apos;zhangsan&amp;apos;, 20);
 构造函数-扩展v">
-<meta property="og:updated_time" content="2017-09-29T07:58:46.686Z">
+<meta property="og:updated_time" content="2017-09-29T08:16:05.223Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js基础整理二————原型对象和原型链">
 <meta name="twitter:description" content="js 原型对象和原型链抛出问题
@@ -219,12 +219,8 @@ var f = new Foo(&apos;zhangsan&apos;, 20);
 <li>所有的引用类型都有一个__proto__属性，属性值为普通的对象</li>
 <li>所有的函数有一个prototype 属性</li>
 <li><p>所有的引用类型__proto__指向 构造函数的 prototype</p>
-<pre><code>var ojj = {};
-var obj = {}; obj.a = 100;
-var arr = []; arr.a = 100;
-function fn(){}
-fn.a = 100;
-</code></pre></li>
+<p>  var obj = {}; obj.a = 100;<br>  var arr = []; arr.a = 100;<br>  function fn(){}<br>  fn.a = 100;</p>
+</li>
 <li><p>当试图得到一个对象的某个属性时，如果这个对象本身没有这个属性，那么它会去他的__proto__中寻找</p>
 <pre><code>function Foo(name){
     this.name = name;
