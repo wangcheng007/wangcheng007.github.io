@@ -146,250 +146,147 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-less" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-jsCreateObject" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/16/less/">less学习</a>
+      <a class="article-title" href="/2017/09/29/jsCreateObject/">js基础整理八————创建对象模式</a>
     </h1>
   
 
         
-        <a href="/2017/09/16/less/" class="archive-article-date">
-  	<time datetime="2017-09-16T13:47:38.189Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-16</time>
+        <a href="/2017/09/29/jsCreateObject/" class="archive-article-date">
+  	<time datetime="2017-09-29T07:04:54.270Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="less学习"><a href="#less学习" class="headerlink" title="less学习"></a>less学习</h3><h4 id="1-常量"><a href="#1-常量" class="headerlink" title="1.常量"></a>1.常量</h4><p>常量的声明：@常量名：数值;<br>常量的使用：@常量名</p>
-<h4 id="2-混合"><a href="#2-混合" class="headerlink" title="2.混合"></a>2.混合</h4><p>混合的使用：可以使用定义过的class如：</p>
-<pre><code>.border(){
-    border:2px solid black
-}
-.btn{
-    width:100px;
-    height:100px;
-    .border;
-}
-</code></pre><p>也可以传入参数如:</p>
-<pre><code>.border(@width){
-    border:@width solid black
-}
-.btn{
-    width:100px;
-    height:100px;
-    .border(2px);
-}
-</code></pre><p>初始化参数：</p>
-<pre><code>.border(@width:2px){
-    border:@width solid black
-}
-.btn{
-    width:100px;
-    height:100px;
-    .border();
-}
-</code></pre>
-        
-          <a class="article-more-a" href="/2017/09/16/less/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">less</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/16/less/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-WeChatPay_2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/28/WeChatPay_2/">微信公众号支付开发总结二</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/28/WeChatPay_2/" class="archive-article-date">
-  	<time datetime="2017-06-28T14:38:17.937Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>接着昨天的写。微信公众号支付开发的第三步，也是最后一步，通过预下单的ID发起支付请求。</p>
+        <h3 id="js面向对象程序设计——几种创建对象的方式"><a href="#js面向对象程序设计——几种创建对象的方式" class="headerlink" title="js面向对象程序设计——几种创建对象的方式"></a>js面向对象程序设计——几种创建对象的方式</h3><blockquote>
+<p>刚好最近有笔试题说说js几种创建对象的模式，便写一写，理一理</p>
 </blockquote>
-<h3 id="通过预下单的ID发起支付请求"><a href="#通过预下单的ID发起支付请求" class="headerlink" title="通过预下单的ID发起支付请求"></a>通过预下单的ID发起支付请求</h3><blockquote>
-<p>获取signature 这里采用SHA－１　加密方法（必为无论新版旧版） </p>
-</blockquote>
-<pre><code>String timestamp = myDate.getTime() / 1000 + &quot;&quot;;
-String nonce_str = CommonUtil.create_nonce_str();
-String string1;
-String signature = &quot;&quot;;
-
-String jsapi_ticket = WeixinUtil.getjsapi_ticket();
-// 注意这里参数名必须全部小写，且必须有序
-//jsapi_ticket 每7200秒 更新一次 建议写入进程 自动获取
-string1 = &quot;jsapi_ticket=&quot; + jsapi_ticket + &quot;&amp;noncestr=&quot; + nonce_str
-        + &quot;&amp;timestamp=&quot; + timestamp + &quot;&amp;url=&quot; + url;
-try {
-    MessageDigest crypt = MessageDigest.getInstance(&quot;SHA-1&quot;);
-    crypt.reset();
-    crypt.update(string1.getBytes(&quot;UTF-8&quot;));
-    signature = CommonUtil.byteToStr(crypt.digest());
-} catch (NoSuchAlgorithmException e) {
-    e.printStackTrace();
-} catch (UnsupportedEncodingException e) {
-    e.printStackTrace();
-}
-
-Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();
-map.put(&quot;noncestr&quot;, nonce_str);
-map.put(&quot;timestamp&quot;, timestamp);
-map.put(&quot;signature&quot;, signature);
-
-public static String byteToStr(byte[] byteArray) {
-    String strDigest = &quot;&quot;;
-    for (int i = 0; i &lt; byteArray.length; i++) {
-        strDigest += byteToHexStr(byteArray[i]);
+<h5 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h5><ul>
+<li><p>对象字面量</p>
+<pre><code>var obj = {
+    hour: 12,
+    day: 13,
+    getTime: function(){
+        console.log(new Date());
     }
-    return strDigest;
 }
-
-public static String byteToHexStr(byte bytes) {
-    char[] Digit = { &apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;, &apos;A&apos;,
-            &apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;, &apos;F&apos; };
-    char[] tempArr = new char[2];
-    tempArr[0] = Digit[(bytes &gt;&gt;&gt; 4) &amp; 0X0F];
-    tempArr[1] = Digit[bytes &amp; 0X0F];
-
-    String s = new String(tempArr);
-    return s;
-}
-</code></pre>
-        
-          <a class="article-more-a" href="/2017/06/28/WeChatPay_2/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">微信公众号支付</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/28/WeChatPay_2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-WechatPay_1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/27/WechatPay_1/">微信公众号支付开发总结一</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/27/WechatPay_1/" class="archive-article-date">
-  	<time datetime="2017-06-27T01:21:16.126Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>前段时间开发了一个基于微信的电商平台，里面有涉及到微信公众号支付，不断踩坑。</p>
-</blockquote>
-<h3 id="一、微信支付开发的基本流程"><a href="#一、微信支付开发的基本流程" class="headerlink" title="一、微信支付开发的基本流程"></a>一、微信支付开发的基本流程</h3><blockquote>
-<p>微信开发分为三个流程 </p>
-</blockquote>
-<ul>
-<li>1.通过code授权用户权限获取用户的openid</li>
-<li>2.通过获取的 openid ，商户的 appid ，商户key，商户的mch_ID，统一下单 获取预下单的ID</li>
-<li>3.通过预下单的ID发起支付请求。</li>
+</code></pre></li>
+<li><p>创建Object实例</p>
+<pre><code>var obj = new Object();
+obj.hour = 10;
+</code></pre></li>
 </ul>
-        
-          <a class="article-more-a" href="/2017/06/27/WechatPay_1/#more">more >></a>
-        
+<h5 id="对象创建模式"><a href="#对象创建模式" class="headerlink" title="对象创建模式"></a>对象创建模式</h5><ul>
+<li><p>工厂模式</p>
+<ul>
+<li>概念：工厂模式是软件工程领域一种广为人知的设计模式，这种模式，抽象了具体的创建过程。</li>
+<li><p>实现</p>
+<pre><code>function createPerson(name, age, job){
+    var o = new Object();
+    o.name = name;
+    o.age = age;
+    o.job = job;
+    o.sayName = function(){
+        console.log(this.name);
+    }
+    return o;
+}
+</code></pre></li>
+<li>优点：解决了创建多个相似对象的问题</li>
+<li>缺点：没有解决对象的识别问题</li>
+</ul>
+</li>
+<li><p>构造函数模式</p>
+<ul>
+<li><p>实现：</p>
+<pre><code>function Person(name, age, job){
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.sayName = function(){
+        console.log(this.name);
+    }
+}
+
+var person1 = new Person(&apos;555&apos;, 55, &apos;666&apos;);
+var person1 = new Person(&apos;666&apos;, 66, &apos;555&apos;);
+</code></pre></li>
+<li>与createPerson对比：<ul>
+<li>1.没有显式地创建对象；</li>
+<li>2.直接将属性和方法赋值给this对象；</li>
+<li>3.没有return语句。</li>
+</ul>
+</li>
+<li>要创建Person的新实例，使用new操作符实际会发生以下四个步骤<ul>
+<li>创建一个对象</li>
+<li>将构造函数的作用域赋值给新的对象（因此this就指向了这个新对象）</li>
+<li>执行构造函数中的代码</li>
+<li>返回新对象</li>
+</ul>
+</li>
+<li>对象的识别，使用instanceof</li>
+<li>优点：创建自定义的构造函数对象意味着未来可以将它的实例标识为一种特定的类型。</li>
+<li><p>缺点：每个方法都要在每个实例上重新创建一遍，即personal1和persoanal2都有一个名为sayName()的方法，但那两个方法不是同一个Function的实例，虽然可以使用定义全局方法例如</p>
+<pre><code>function Personal(name, age, job){
+    this.sayName = sayName;
+}
+
+function sayName(){
+    cossole.log(this.name);
+}
+</code></pre><p>这样虽然可以解决上面的问题，可是当方法越来越多就会显得很混乱而且丝毫没有封装性可言。</p>
+</li>
+</ul>
+</li>
+<li><p>原型模式</p>
+<ul>
+<li>实现的根据：每个函数都有一个prototype属性，这个属性时一个指针，指向一个对象，对象都具有可扩展属性。</li>
+<li><p>实现：</p>
+<pre><code>function Perosn(){
+}
+
+Perosn.prototype.name = &apos;mark&apos;;
+Perosn.prototype.age = 29;
+Perosn.prototype.job = &apos;enlish&apos;;
+Perosn.prototype.sayName = function(){
+    console.log(this.name);
+}
+</code></pre></li>
+<li>理解：理解原型对象，可以查看我以前的内容</li>
+<li>优点：解决了上面定义多个方法的问题，让多个对象的方法指向同一个Function实例</li>
+<li>缺点：对象没有自己的属性，每次改动原型模式中的属性，其他对象额属性也会跟着改变</li>
+</ul>
+</li>
+<li><p>组合使用构造函数模式和原型模式</p>
+<ul>
+<li>比较容易理解，就是将构造函数和原型模式结合起来，构造函数有自己的属性，使用原型扩展公用方法</li>
+<li><p>实现</p>
+<pre><code>function Person(name. age, job){
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.friends = [&apos;Geroy&apos;, &apos;Scout&apos;];
+}
+
+Person.prototype = {
+    constructor: Person,
+    sayName:  function(){
+        console,log(name);
+    }
+}
+</code></pre></li>
+</ul>
+</li>
+</ul>
+
       
 
       
@@ -402,7 +299,11 @@ public static String byteToHexStr(byte bytes) {
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">微信公众号支付</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">整理复习</a>
         		</li>
       		
 		</ul>
@@ -412,7 +313,7 @@ public static String byteToHexStr(byte bytes) {
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/27/WechatPay_1/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/29/jsCreateObject/">展开全文 >></a>
         </p>
       
 
@@ -430,35 +331,142 @@ public static String byteToHexStr(byte bytes) {
 
 
   
-    <article id="post-css3_1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-js_7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/16/css3_1/">css3之选择器</a>
+      <a class="article-title" href="/2017/09/29/js_7/">js基础整理七————事件</a>
     </h1>
   
 
         
-        <a href="/2017/03/16/css3_1/" class="archive-article-date">
-  	<time datetime="2017-03-16T07:52:17.619Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-16</time>
+        <a href="/2017/09/29/js_7/" class="archive-article-date">
+  	<time datetime="2017-09-29T07:04:54.269Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-属性选择器"><a href="#1-属性选择器" class="headerlink" title="1.属性选择器"></a>1.属性选择器</h3><p>实际用处并不大的^,$,*,分别代表开头，结尾，包含。<br>简单例子：  </p>
-<pre><code>a[class^=&quot;column&quot;]{background:red;}
-a[href$=&quot;.doc&quot;]{background:green;}
-a[title*=&quot;box&quot;]{background:blue;}
-</code></pre><p>分别代表：包含column 开头的类名，包含.doc 结尾的href属性，包含box的title属性。</p>
-<h3 id="2-伪类选择器"><a href="#2-伪类选择器" class="headerlink" title="2.伪类选择器"></a>2.伪类选择器</h3><p>常见的伪类选择器： </p>
-        
-          <a class="article-more-a" href="/2017/03/16/css3_1/#more">more >></a>
-        
+        <h3 id="js事件"><a href="#js事件" class="headerlink" title="js事件"></a>js事件</h3><h5 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h5><ul>
+<li>编写一个通用的事件监听函数</li>
+<li>描述事件冒泡的流程</li>
+<li>对于一个无限下拉加载图片的页面，如何给每个图片绑定事件</li>
+</ul>
+<h5 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h5><ul>
+<li><p>通用事件绑定</p>
+<pre><code>btn.addEventListener(&apos;click&apos;, function (event){
+    e.preventDefault(); 
+    console.log(&apos;clicked&apos;);
+});
+</code></pre><ul>
+<li>IE低版本兼容，attachEvent绑定事件</li>
+</ul>
+</li>
+<li>事件冒泡<pre><code>e.stopPropatation();// 阻止冒泡
+</code></pre></li>
+<li>代理</li>
+</ul>
+<h5 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h5><ul>
+<li>编写一个通用的事件监听函数</li>
+<li>描述事件冒泡的流程<ul>
+<li>沿着dom树往上找</li>
+</ul>
+</li>
+<li>对于一个无限下拉加载图片的页面，如何给每个图片绑定事件</li>
+</ul>
+<h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><h5 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h5><ul>
+<li>手动编写ajax，不依赖第三方库</li>
+<li>跨域的几种实现方式</li>
+</ul>
+<h5 id="知识点-1"><a href="#知识点-1" class="headerlink" title="知识点"></a>知识点</h5><ul>
+<li><p>XMLHttpREquest</p>
+<pre><code>var xhr = new XMLHttpRequest();
+xhr.open(&apos;GET&apos;, &apos;/api&apos;, false);
+xhr.onreadystatechange = function() {
+    if(xhr.readyState == 4){
+        if(xhr.status == 200){
+            alert(xhr.responseText);
+        }
+    }
+}
+xhr.send(null);
+</code></pre><ul>
+<li>IE低版本使用ActiveXObject</li>
+</ul>
+</li>
+<li>状态码说明<ul>
+<li>0 - (未初始化) 还没有调用send() 方法</li>
+<li>1 - (载入) 已调用send方法，正在发送</li>
+<li>2 - (载入完成) send方法执行完成</li>
+<li>3 - (交互) 正在解析响应内容</li>
+<li>4 - (完成) 响应内容解析完成，可在客户端调用</li>
+<li>2xx - 表示请求成功。如200</li>
+<li>3xx - 需要重定向，浏览器直接跳转</li>
+<li>4xx - 客户端请求错误，如404</li>
+<li>5xx - 服务器端错误 </li>
+</ul>
+</li>
+<li><p>跨域</p>
+<ul>
+<li><p>什么是跨域</p>
+<pre><code>浏览器的同源策略，不允许ajax访问其他域接口
+跨域条件：协议，域名，端口，有一个不同就算跨域
+</code></pre><ul>
+<li>三个标签可以使用跨域<img src="/2017/09/29/js_7/xxx" \=""> <link href="xxxx" \=""><script src="xxx" \=""></li>
+<li><img>用于打点统计，统计网站可能是其他域</li>
+</ul>
+</li>
+<li><p>JSONP</p>
+<ul>
+<li><p>实现原理</p>
+<pre><code>加载http://baozi.com/index.html
+不一定服务器端真正有一个index.html文件
+服务器可以根据请求，动态生成一个文件返回
+同理于&lt;script src=&apos;http://baozi.com/spi.js&apos;&gt;
+</code></pre></li>
+<li>参会内容的格式 callback({x:100, y:200})</li>
+</ul>
+</li>
+<li>服务器端设置http header</li>
+<li>注意事项<ul>
+<li>所有的跨域请求都必须经过信息提供方允许</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><h5 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h5><ul>
+<li>cookie，sessionSorage和localStorage的区别</li>
+</ul>
+<h5 id="知识点-2"><a href="#知识点-2" class="headerlink" title="知识点"></a>知识点</h5><ul>
+<li>cookie<ul>
+<li>本身用于客户端和服务器端通信</li>
+<li>但是它有本地存储的功能，于是就被“借用”</li>
+<li>使用document.cookie=… 获取和修改即可</li>
+<li>存储量太小，只有4kb</li>
+<li>所有http请求都带着，会影响获取资源的效率</li>
+</ul>
+</li>
+<li>localStorage 和 sessionStorage<ul>
+<li>HTML5 专门为存储而设计，最大容量5M</li>
+<li>API简单易用</li>
+<li>localStorage.setItem(key, value);localStorage.getItem(key);</li>
+</ul>
+</li>
+</ul>
+<h5 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h5><ul>
+<li>cookie，sessionSorage和localStorage的区别<ul>
+<li>容量</li>
+<li>是否会携带到ajax中</li>
+<li>API易用性</li>
+</ul>
+</li>
+</ul>
+</script></li></ul></li></ul></li></ul>
       
 
       
@@ -471,11 +479,11 @@ a[title*=&quot;box&quot;]{background:blue;}
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">css3</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">简单</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">整理复习</a>
         		</li>
       		
 		</ul>
@@ -485,7 +493,7 @@ a[title*=&quot;box&quot;]{background:blue;}
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/16/css3_1/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/29/js_7/">展开全文 >></a>
         </p>
       
 
@@ -503,30 +511,77 @@ a[title*=&quot;box&quot;]{background:blue;}
 
 
   
-    <article id="post-css3_2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-js_6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/16/css3_2/">css3之变形与动画</a>
+      <a class="article-title" href="/2017/09/29/js_6/">js基础整理六————js-web-api</a>
     </h1>
   
 
         
-        <a href="/2017/03/16/css3_2/" class="archive-article-date">
-  	<time datetime="2017-03-16T07:52:17.617Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-16</time>
+        <a href="/2017/09/29/js_6/" class="archive-article-date">
+  	<time datetime="2017-09-29T07:04:54.254Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-css变形"><a href="#1-css变形" class="headerlink" title="1.css变形"></a>1.css变形</h3><h4 id="属性值：transform"><a href="#属性值：transform" class="headerlink" title="属性值：transform"></a>属性值：transform</h4><p>旋转 <strong>rotate</strong>，拉伸 <strong>shew</strong>，缩放 <strong>scale</strong>，位移 <strong>translate</strong>，以及矩阵       <strong>matrix</strong>。<br>说一下最后一个矩阵 <strong>matrix</strong> 函数这个函数有6个参数<br><code>transform：matrix（a,b,c,d,f,e）</code><br>虽然这个函数的参数很多，实际上这些个参数对应的矩阵就是<br>a c e<br>b d f<br>0 0 1<br>就是这么简单的一个矩阵，那么按照我们的线代知识，这个矩阵和矩阵<br>x<br>y<br>1<br>这个矩阵相乘得到的就是矩阵就是 </p>
-        
-          <a class="article-more-a" href="/2017/03/16/css3_2/#more">more >></a>
-        
+        <h3 id="js-web-api"><a href="#js-web-api" class="headerlink" title="js-web-api"></a>js-web-api</h3><h6 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h6><ul>
+<li>题目<ul>
+<li>DOM是哪种基本的数据结构</li>
+<li>DOM操作的常用API有哪些</li>
+<li>DOM及诶单的attr和property有何区别</li>
+</ul>
+</li>
+<li>知识点<ul>
+<li>DOM本质</li>
+<li>DOM节点操作<ul>
+<li>获取DOM</li>
+<li>prototype</li>
+<li>Attribute</li>
+</ul>
+</li>
+<li>DOM结构操作<ul>
+<li>新增节点： document.creatElement();innerHTML</li>
+<li>获取父元素</li>
+<li>获取子元素 childNodes 和 children 的区别, childNodes 事无巨细全部返回</li>
+<li>删除节点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="BOM操作"><a href="#BOM操作" class="headerlink" title="BOM操作"></a>BOM操作</h5><ul>
+<li>题目<ul>
+<li>如何检测浏览器的类型</li>
+<li>拆解url的各部分</li>
+</ul>
+</li>
+<li><p>知识点</p>
+<ul>
+<li><p>navigator</p>
+<pre><code>var ua = navigatoruserAgent
+</code></pre></li>
+<li>screen</li>
+<li><p>location</p>
+<pre><code>console.log(locationg.href);
+console.log(locationg.prorocol);
+console.log(locationg.pathname);
+console.log(locationg.search);
+console.log(locationg.hash);
+</code></pre></li>
+<li>history<pre><code>historyback();
+historyforward();
+</code></pre></li>
+</ul>
+</li>
+</ul>
+
       
 
       
@@ -539,11 +594,11 @@ a[title*=&quot;box&quot;]{background:blue;}
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">css3</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">简单</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">整理复习</a>
         		</li>
       		
 		</ul>
@@ -553,7 +608,7 @@ a[title*=&quot;box&quot;]{background:blue;}
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/16/css3_2/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/29/js_6/">展开全文 >></a>
         </p>
       
 
@@ -571,6 +626,876 @@ a[title*=&quot;box&quot;]{background:blue;}
 
 
   
+    <article id="post-js_5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/29/js_5/">js基础整理五————js内置对象</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/29/js_5/" class="archive-article-date">
+  	<time datetime="2017-09-29T07:04:54.253Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="js内置对象"><a href="#js内置对象" class="headerlink" title="js内置对象"></a>js内置对象</h3><h5 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h5><ul>
+<li>获取2017-06-10 格式的日期</li>
+<li>获取随机数，要求长度一致的字符串格式</li>
+<li>写一个能遍历对象和数组的forEach函数</li>
+</ul>
+<h5 id="内置对象"><a href="#内置对象" class="headerlink" title="内置对象"></a>内置对象</h5><ul>
+<li><p>Date</p>
+<pre><code>Date.new(); // 当前时间的毫秒数
+var dt = new Date();
+dt.getTime(); //获取毫秒数
+dt.getFullYear(); //年
+dt.getMonth; // 月 （0-11）
+dt.getDay(); // 周几
+dt.getData(); // 日
+dt.getHours(); // 小时
+dt.getMinutes(); // 分钟
+dt.getSeconds(); // 秒
+</code></pre></li>
+<li>Math<ul>
+<li>获取随机数 Math.random();</li>
+</ul>
+</li>
+<li>数组 Array<ul>
+<li>forEach 遍历所有元素</li>
+<li>every 判断所有元素是否符合条件</li>
+<li>some 判断是否至少一个元素符合条件</li>
+<li>sort 排序</li>
+<li>map 对数组重新组装，生成新数组</li>
+<li>filter 过滤符合条件的元素</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">整理复习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/29/js_5/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-js_4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/29/js_4/">js基础整理四————异步，单线程</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/29/js_4/" class="archive-article-date">
+  	<time datetime="2017-09-29T07:04:54.252Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><h5 id="抛出问题"><a href="#抛出问题" class="headerlink" title="抛出问题"></a>抛出问题</h5><ul>
+<li>同步和异步的区别</li>
+<li>一个关于setTimeout的笔试题</li>
+<li>前端使用异步的场景有哪些</li>
+</ul>
+<h5 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h5><ul>
+<li>什么是异步（对比同步）<ul>
+<li>同步阻塞</li>
+<li>异步不阻塞</li>
+</ul>
+</li>
+<li>前端使用异步的场景<ul>
+<li>定时任务： setTimeout, setInvercal</li>
+<li>网络请求： ajax请求，动态<img\>加载</img\></li>
+<li>事件绑定</li>
+</ul>
+</li>
+<li><p>异步和单线程</p>
+<pre><code>console.log(100);
+setTimeout(function(){
+    console.log(200);
+})
+console.log(300);
+</code></pre><ul>
+<li>执行第一行，打印100</li>
+<li>执行setTimeout后，传入setTimeout的函数会被暂存起来，不会立即执行（单线程的特点，不能同时干两件事）</li>
+<li>执行最后一行，打印300</li>
+<li>待所有程序执行完，处于空闲状态，会立马看有没有暂存起来的要执行</li>
+<li>发现暂存起来的setTimeout中函数无等待时间，就立即执行</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">整理复习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/29/js_4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-js_3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/29/js_3/">js基础整理三————作用域和闭包</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/29/js_3/" class="archive-article-date">
+  	<time datetime="2017-09-29T07:04:54.238Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="js-作用域和闭包"><a href="#js-作用域和闭包" class="headerlink" title="js 作用域和闭包"></a>js 作用域和闭包</h3><h5 id="抛出问题"><a href="#抛出问题" class="headerlink" title="抛出问题"></a>抛出问题</h5><ul>
+<li>说一下对变量提升的理解</li>
+<li>说明this的集中不同场景</li>
+<li>创建10个<a\>标签，点击时弹出对应的序号</a\></li>
+<li>如何理解作用域</li>
+<li>实际开发中闭包的应用</li>
+</ul>
+<h5 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h5><ul>
+<li><p>执行上下文</p>
+<ul>
+<li>范围： 一段<script\>或者一个函数</script\></li>
+<li>全局：变量定义、函数声明</li>
+<li><p>函数： 变量定义、函数声明、this、arguments</p>
+<pre><code>console.log(a); // undefined
+var a = 100;
+</code></pre></li>
+</ul>
+</li>
+<li><p>this</p>
+<ul>
+<li><p>this 要在执行时才能确定，定义时无法确定</p>
+<pre><code>var a = {
+    name: &apos;A&apos;,
+    fn: function(){
+        console.log(this.name);
+    }
+}
+
+a.fn(); // this === a
+a.fn.call({name: &apos;B&apos;}) // this === {name: &apos;B&apos;}
+var fn1 = a.fn
+fn1() // this === window
+</code></pre></li>
+<li>作为构造函数执行</li>
+<li>作为对象属性执行</li>
+<li>作为普通函数执行</li>
+<li>call apply bind</li>
+</ul>
+</li>
+<li>作用域<ul>
+<li>没有块级作用域</li>
+<li>函数和全局作用域</li>
+<li>函数作用域在定义是确定</li>
+</ul>
+</li>
+<li>作用域链<ul>
+<li>自由变量，当前作用域没有定义的变量 </li>
+</ul>
+</li>
+<li>闭包<ul>
+<li>函数作为返回值</li>
+<li>函数作为参数传递</li>
+</ul>
+</li>
+</ul>
+<h5 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h5><ul>
+<li>说一下对变量提升的理解<ul>
+<li>变量定义</li>
+<li>函数声明</li>
+</ul>
+</li>
+<li>说明this的集中不同场景</li>
+<li><p>创建10个<a\>标签，点击时弹出对应的序号</a\></p>
+<pre><code>for(var i = 0; i &lt; 10; i++){
+    (function ())(i)
+    a = document.creatElement(&apos;a&apos;);
+    a.innerHTML = i + &apos;&lt;br&gt;&apos;;
+    a.addEventListener(&apos;click&apos;, function (e){
+        e.preventDefault();
+        alert(i);
+    })
+}
+</code></pre></li>
+<li>如何理解作用域<ul>
+<li>自由变量</li>
+<li>作用域链，即自由变量的查找</li>
+</ul>
+</li>
+<li>实际开发中闭包的应用</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">整理复习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/29/js_3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-js_2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/29/js_2/">js基础整理二————原型对象和原型链</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/29/js_2/" class="archive-article-date">
+  	<time datetime="2017-09-29T07:04:54.233Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="js-原型对象和原型链"><a href="#js-原型对象和原型链" class="headerlink" title="js 原型对象和原型链"></a>js 原型对象和原型链</h3><h5 id="抛出问题"><a href="#抛出问题" class="headerlink" title="抛出问题"></a>抛出问题</h5><ul>
+<li>如何判断一个变量是数组类型</li>
+<li>写一个原型链继承的例子</li>
+<li>描述new一个对象的过程</li>
+<li>zepto源码中如何使用原型链</li>
+</ul>
+<h5 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h5><h6 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h6><pre><code>function Foo(name, age){
+    this.name = name;
+    this.age = age;
+}
+
+var f = new Foo(&apos;zhangsan&apos;, 20);
+</code></pre><h6 id="构造函数-扩展"><a href="#构造函数-扩展" class="headerlink" title="构造函数-扩展"></a>构造函数-扩展</h6><p>var a = {} 和 var a = new Object()效果相同<br>var a = [] 和 var a = new Array()效果相同<br>function Foo(){} 和 var Foo = new Function(){} 效果相同</p>
+<h6 id="原型规则和实例"><a href="#原型规则和实例" class="headerlink" title="原型规则和实例"></a>原型规则和实例</h6><ul>
+<li>所有的引用类型都有对象的特性，即可自由扩展属性</li>
+<li>所有的引用类型都有一个__proto__属性，属性值为普通的对象</li>
+<li>所有的函数有一个prototype 属性</li>
+<li><p>所有的引用类型__proto__指向 构造函数的 prototype</p>
+<pre><code>var obj = {}; obj.a = 100;
+var arr = []; arr.a = 100;
+function fn(){}
+fn.a = 100;
+</code></pre></li>
+<li><p>当试图得到一个对象的某个属性时，如果这个对象本身没有这个属性，那么它会去他的__proto__中寻找</p>
+<pre><code>function Foo(name){
+    this.name = name;
+}
+
+Foo.prototype.alertName = function () {
+    alert(this.name);
+}
+
+var f = new Foo(&apos;zhangsan&apos;);
+
+f.printName = function () {
+    console.log(this.name);
+}
+
+f.printName();
+f.alertName();
+</code></pre><h6 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h6><pre><code>function Foo(name){
+    this.name = name;
+}
+
+Foo.prototype,alertName = function () {
+    alert(this.name);
+}
+
+var f = new Foo(&apos;zhangsan&apos;);
+
+f.printName = function () {
+    console.log(this.name);
+}
+
+f.printName();
+f.alertName();
+f.toString(); // 要去f.__proto__.__proto__中寻找
+</code></pre><h6 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h6><p>用于判断应用类型是哪个构造函数</p>
+</li>
+<li>f instanceof Foo 判断逻辑</li>
+<li>f 的 __proto__ 一层一层的往上找</li>
+<li>在试着判断 f instanceof Object</li>
+</ul>
+<h5 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h5><ul>
+<li>如何判断一个变量是数组类型</li>
+<li><pre><code>var arr = [];
+arr instanceof Array //true
+//当网页中存在框架时，可能会出现问题
+Object.prototype.toString.call(val) === &apos;[object Array]&apos; //true
+</code></pre></li>
+<li><p>写一个原型链继承的例子</p>
+<pre><code>function Amimal(){}
+function Dog(){}
+
+Dog.prototype = new Animal();
+</code></pre></li>
+<li><p>描述new一个对象的过程</p>
+<pre><code>function Foo(name, age){
+    this.name = name;
+    this.dog = dog
+    // return this
+}
+</code></pre></li>
+<li>zepto源码中如何使用原型链</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">整理复习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/29/js_2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-js_1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/29/js_1/">js基础整理一————数据类型</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/29/js_1/" class="archive-article-date">
+  	<time datetime="2017-09-29T07:04:54.221Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近打算把js梳理一下，也留着自己看，这是一篇笔记性质的文章。</p>
+<blockquote>
+<p>问题：typeof 会返回哪些值<br>问题：js数据类型转换  </p>
+</blockquote>
+<h5 id="js的数据类型"><a href="#js的数据类型" class="headerlink" title="js的数据类型"></a>js的数据类型</h5><p>在回答上面问题之前，首先我们得知道js 有哪些数据类型。<br>js的数据类型总分为两类，值类型和引用类型。<br>值类型包括：Number，String，Boolean<br>引用类型包括：Array，Object，函数<br>这里也不多介绍其他的了。</p>
+<h5 id="typeof的返回值"><a href="#typeof的返回值" class="headerlink" title="typeof的返回值"></a>typeof的返回值</h5><pre><code>typeof undefined    //undefined
+typeof 123          // number
+typeof &apos;abc&apos;        //string
+typeof true         //boolean
+typeof {}           //object
+typeof []           //object
+typeof null         //object
+typeof console.log  //function  
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">整理复习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/29/js_1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-inherit" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/29/inherit/">js基础整理九————继承</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/29/inherit/" class="archive-article-date">
+  	<time datetime="2017-09-29T07:04:54.219Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><blockquote>
+<p>这是一篇关于js继承的文章，具体主要的js高程上面都有，这里只是简单理一理，外加一些自己的看法。</p>
+</blockquote>
+<p>下面直接上干货</p>
+<ul>
+<li><p>原型链继承</p>
+<ul>
+<li>基础依赖:可以查看我以前写的文章原型对象和原型链</li>
+<li><p>实例</p>
+<pre><code>function Parent(name) {
+    this.name = name;
+}
+
+Parent.prototype.sayName = function() {
+    console.log(&apos;your name:&apos; + this.name);
+}
+
+function Child(name) {
+    this.name = name;
+}
+
+Child.prototype = new Parent(&apos;Nickle&apos;);
+Child.prototype.constructor = Child;
+
+var child = new Child(&apos;Jack&apos;);
+child.sayName();
+</code></pre><p>打印结果为 your name Jack</p>
+</li>
+<li>缺点<ul>
+<li>当超类中存在引用类型时，该属性会被所有的实例共享</li>
+<li>在创建子类的过程中无法向父类传递数据，让子类使用父类的构造器，而是只能通过new Parent(‘Nickle’) 去解决</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在别的地方相似的文章下面看到一个问题：子类的 __proto__ 属性为什么指向父类。而不是指向Function.prototype，这里子类是Child，父类为Parent。<br>我想他可能吧概念搞混淆了，所有的引用类型的__proto__指向的是构造函数的prototype，即方法Child和Parent的__proto__指向的都是Function.prototype。在本例中实例child的__proto__指向的是构造函数Child的prototype，而我们已经做了这步操作：Child.prototype = new Parent(‘Nickle’);使得Child.prototype成为了parent的实例。下面给出测试</p>
+</blockquote>
+<pre><code>// 为了测试我将继承写为
+var parent = new Parent(&apos;Nickle&apos;);
+Child.prototype = parent;
+
+Child.__proto__ === Parent.__proto__; // true
+Child.__proto__ === Function.prototype; // true
+child.__proto__ === parent;  // true
+child.__proto__.__proto__ === Parent.prototype； // true
+</code></pre><ul>
+<li><p>借用构造函数</p>
+<ul>
+<li>基础依赖：即在子类的构造函数中调用超类型构造函数，可以通过call 和 apply来进行。</li>
+<li><p>实例</p>
+<pre><code>function Parent(name) {
+    this.colors = [&apos;white&apos;, &apos;black&apos;, &apos;green&apos;];
+    this.name = name
+}
+
+function Child(name) {
+    // 完成了继承，同时还实现了传递参数
+    Parent.call(this, &apos;Nickle&apos;);
+}
+
+var child1 = new Child();
+child1.colors.push(&apos;red&apos;);
+console.log(child1.colors); // [&quot;white&quot;, &quot;black&quot;, &quot;green&quot;, &quot;red&quot;]
+
+var child2 = new Child();
+console.log(child2.colors); // [&quot;white&quot;, &quot;black&quot;, &quot;green&quot;]
+</code></pre></li>
+<li>缺点：函数无法复用。</li>
+</ul>
+</li>
+<li><p>组合式继承：使用原型和借用构造函数</p>
+<ul>
+<li><p>实例</p>
+<pre><code>function Parent(name) {
+    this.name = name;
+    this.colors = [&apos;white&apos;, &apos;black&apos;, &apos;green&apos;];
+}
+
+Parent.prototype.sayName = function() {
+    console.log(this.name);
+}
+
+function Child(age, name) {
+    Parent.call(this);
+
+    this.age = age;
+}
+
+Child.prototype = new Parent();
+Child.prototype.constructor = Child;
+Child.prototype.sayAge = function() {
+    console.log(this.age);
+}
+
+var child1 = new Child(&apos;Nickle&apos;, 20);
+child1.colors.push(&apos;red&apos;); // [&quot;white&quot;, &quot;black&quot;, &quot;green&quot;, &quot;red&quot;]
+child1.sayName(); // Nickle
+child1.sayAge(); // 20
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<pre><code>var child2 = new Child(&apos;Grey&apos;, 27);
+console.log(child2.colors); // [&quot;white&quot;, &quot;black&quot;, &quot;green&quot;]
+child2.sayName(); // Grey
+child2.sayAge(); // 27
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">整理复习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/29/inherit/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-zhengze" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/29/zhengze/">正则整理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/29/zhengze/" class="archive-article-date">
+  	<time datetime="2017-09-29T07:04:54.209Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="正则学习"><a href="#正则学习" class="headerlink" title="正则学习"></a>正则学习</h3><h5 id="1-字符介绍"><a href="#1-字符介绍" class="headerlink" title="1.字符介绍"></a>1.字符介绍</h5><ul>
+<li>^： 匹配起始位置 例如： ^ttt 即匹配以ttt 开头的字符串</li>
+<li>$： 匹配字符串结尾 例如： $ttt 即匹配以ttt 结尾的字符串</li>
+<li>\b： 匹配单词，例如 \bis\b 即匹配单词is</li>
+<li>\d： 匹配数字， 例如 匹配一个三个数字开头的字符串可以写成 ^\d\d\d</li>
+<li>\w： 匹配字母，数字，下划线，例如我要匹配一个字符串为 dwqdn61_dwq 则正则表达式为 \w+</li>
+<li>\s： 匹配空格， 例如字符串为 ‘a b c’，则正则表达式为 ‘\w\s\w\s\w’一个字符后跟一个空格，如果要匹配多个空格，则为\s+</li>
+<li>.： 匹配除了换行符以外的任意字符</li>
+<li>[pdwp]： 字符组，匹配包含括号中元素的字符串例如[a-z] 只能匹配小些字符</li>
+</ul>
+<h5 id="2-几种反义"><a href="#2-几种反义" class="headerlink" title="2.几种反义"></a>2.几种反义</h5><p>写法很简单，即小写字母改成大写字母</p>
+<ul>
+<li>\W： 匹配任意部位字母，数字，下划线</li>
+<li>\S： 匹配不是空白符的字符</li>
+<li>\D： 匹配任意非数字的字符</li>
+<li>\B： 匹配不是单词开头或结束的位置</li>
+<li>[^abc]： 匹配除了abc以外的字符</li>
+</ul>
+<h5 id="3-量词"><a href="#3-量词" class="headerlink" title="3.量词"></a>3.量词</h5><ul>
+<li><em>（贪婪）：匹配0次或者多次，如a\</em>则匹配0个a或者多个a</li>
+<li>+（懒惰）：匹配1次或者多次，如a+则匹配1个a或者多个a</li>
+<li>？（占有）：匹配0次或者1次，如a？则匹配0个或者1个a</li>
+<li>{n}： 匹配n个字符，如a{3}则匹配3个a</li>
+<li>{n，m}： 匹配n到m个字符，如a{3,4}则匹配3个a或者4个a</li>
+<li>{n，}： 匹配最少n个字符，如a{3，}则匹配最少3个a   </li>
+</ul>
+<blockquote>
+<p>注意： 以上的量词都只是匹配最靠近的字符，即如果正则表达式为 ‘ab*‘ 即匹配的是字符串是a后面的b为0个或者多个，而不是ab的个数为0个或者多个。能匹配的字符串是a，ab，abb，而不是abab之类,如果要匹配以ab为单位则正则可以写成（ab）+</p>
+</blockquote>
+<h5 id="4-正则进阶"><a href="#4-正则进阶" class="headerlink" title="4.正则进阶"></a>4.正则进阶</h5><ul>
+<li>捕获分组<ul>
+<li>概念：在一个括号中的内容如(\d)\d,前面(\d)就是一个捕获分组，可以对捕获分组进行后向引用，即我在后面的正则中可以使用前面的捕获分组。例如(\d)\d\1这里的\1就是对(\d)的后向引用。</li>
+<li>常用用法：<ul>
+<li>(exp)：匹配exp，并自动捕获文本到自命名空间</li>
+<li>(?<name> exp)： 匹配exp，并捕获文本到名称为name的空间，使用时为\k<name></name></name></li>
+<li>(?:exp)： 匹配exp，不捕获匹配的文本，也不给该分组分配组号</li>
+<li>(?=exp)： 匹配exp前面的位置，如’What are you’,该正则为(?<txt>.+(?=you))这里取you前面的所有字符成一个分组，该分组名为txt，内容为’What are ‘</txt></li>
+<li>(?&lt;=exp)： 匹配exp后面的位置，如’What are you’,该正则为(?<txt>(?&lt;=How).+)这里取How后面的所有字符成一个分组，该分组名为txt，内容为’ are you’</txt></li>
+<li>(?!exp)： 匹配后面跟的不是exp的位置，如’123abc’,正则(\d{3}(?!\d)),匹配三个数字后面非数字的结果</li>
+<li>(?&lt;!exp)： 匹配前面不是exp的位置，如’abc123’,正则为(?&lt;!\d)\d{3},匹配前面的3个非数字的集合</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注意： 这里的捕获分组，捕获的是第一次匹配的文本，而不是正则表达式，例如：13[1-9]-(\d{4})-\1，字符串是：131-5200-1230，这里捕获的是5200这个文本，而不是\d{4}这个表达式，所以这个字符串和正则不匹配</p>
+</blockquote>
+<h5 id="5-正则实战"><a href="#5-正则实战" class="headerlink" title="5.正则实战"></a>5.正则实战</h5><ul>
+<li>匹配Email地址<ul>
+<li>分析：email地址由一排数字，字母，或下划线组成+@+字母+.com组成</li>
+<li>编写：^\w+@\w+.com$</li>
+</ul>
+</li>
+<li>匹配131到139开头的电话号码<ul>
+<li>分析：手机号由11位数字组成</li>
+<li>编写：^13[1-9]-\d{4}-\d{4}$</li>
+</ul>
+</li>
+<li>匹配QQ号<ul>
+<li>分析：QQ由最少5位组成，除了第一位不为0</li>
+<li>编写：[1-9]\d{4,}</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">正则</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/29/zhengze/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -656,15 +1581,27 @@ a[title*=&quot;box&quot;]{background:blue;}
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信公众号支付</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">简单</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">整理复习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">微信公众号支付</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
               </li>
              
               <li class="article-tag-list-item">
