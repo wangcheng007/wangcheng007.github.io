@@ -14,15 +14,16 @@
 下面直接上干货
 
 原型链继承
-
 基础依赖:可以查看我以前写的文章原型对象和原型链
 实例
-function Parent(name) {
-    this.name = name;
-}
 
-Parent.prototype.sayName = function() {
-    console.lo">
+
+
+        function Parent(name) {
+            this.name = name;
+        }
+
+        Parent.prototype.say">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js基础整理九————继承">
 <meta property="og:url" content="http://wangcheng007.github.io/2017/09/29/inherit/index.html">
@@ -33,16 +34,17 @@ Parent.prototype.sayName = function() {
 下面直接上干货
 
 原型链继承
-
 基础依赖:可以查看我以前写的文章原型对象和原型链
 实例
-function Parent(name) {
-    this.name = name;
-}
 
-Parent.prototype.sayName = function() {
-    console.lo">
-<meta property="og:updated_time" content="2017-09-29T07:03:42.571Z">
+
+
+        function Parent(name) {
+            this.name = name;
+        }
+
+        Parent.prototype.say">
+<meta property="og:updated_time" content="2017-09-29T07:49:47.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js基础整理九————继承">
 <meta name="twitter:description" content="继承
@@ -51,15 +53,16 @@ Parent.prototype.sayName = function() {
 下面直接上干货
 
 原型链继承
-
 基础依赖:可以查看我以前写的文章原型对象和原型链
 实例
-function Parent(name) {
-    this.name = name;
-}
 
-Parent.prototype.sayName = function() {
-    console.lo">
+
+
+        function Parent(name) {
+            this.name = name;
+        }
+
+        Parent.prototype.say">
   
     <link rel="alternative" href="/atom.xml" title="我爱吃包子的博客" type="application/atom+xml">
   
@@ -212,38 +215,35 @@ Parent.prototype.sayName = function() {
 </blockquote>
 <p>下面直接上干货</p>
 <ul>
-<li><p>原型链继承</p>
-<ul>
+<li>原型链继承<ul>
 <li>基础依赖:可以查看我以前写的文章原型对象和原型链</li>
-<li><p>实例</p>
-<pre><code>function Parent(name) {
-    this.name = name;
-}
-
-Parent.prototype.sayName = function() {
-    console.log(&apos;your name:&apos; + this.name);
-}
-
-function Child(name) {
-    this.name = name;
-}
-
-Child.prototype = new Parent(&apos;Nickle&apos;);
-Child.prototype.constructor = Child;
-
-var child = new Child(&apos;Jack&apos;);
-child.sayName();
-</code></pre><p>打印结果为 your name Jack</p>
-</li>
-<li>缺点<ul>
-<li>当超类中存在引用类型时，该属性会被所有的实例共享</li>
-<li>在创建子类的过程中无法向父类传递数据，让子类使用父类的构造器，而是只能通过new Parent(‘Nickle’) 去解决</li>
+<li>实例</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<blockquote>
+<pre><code>        function Parent(name) {
+            this.name = name;
+        }
+
+        Parent.prototype.sayName = function() {
+            console.log(&apos;your name:&apos; + this.name);
+        }
+
+        function Child(name) {
+            this.name = name;
+        }
+
+        Child.prototype = new Parent(&apos;Nickle&apos;);
+        Child.prototype.constructor = Child;
+
+        var child = new Child(&apos;Jack&apos;);
+        child.sayName();
+
+打印结果为 your name Jack
+- 缺点
+    * 当超类中存在引用类型时，该属性会被所有的实例共享
+    * 在创建子类的过程中无法向父类传递数据，让子类使用父类的构造器，而是只能通过new Parent(‘Nickle’) 去解决
+</code></pre><blockquote>
 <p>在别的地方相似的文章下面看到一个问题：子类的 __proto__ 属性为什么指向父类。而不是指向Function.prototype，这里子类是Child，父类为Parent。<br>我想他可能吧概念搞混淆了，所有的引用类型的__proto__指向的是构造函数的prototype，即方法Child和Parent的__proto__指向的都是Function.prototype。在本例中实例child的__proto__指向的是构造函数Child的prototype，而我们已经做了这步操作：Child.prototype = new Parent(‘Nickle’);使得Child.prototype成为了parent的实例。下面给出测试</p>
 </blockquote>
 <pre><code>// 为了测试我将继承写为
@@ -255,30 +255,30 @@ Child.__proto__ === Function.prototype; // true
 child.__proto__ === parent;  // true
 child.__proto__.__proto__ === Parent.prototype； // true
 </code></pre><ul>
-<li><p>借用构造函数</p>
-<ul>
+<li>借用构造函数<ul>
 <li>基础依赖：即在子类的构造函数中调用超类型构造函数，可以通过call 和 apply来进行。</li>
-<li><p>实例</p>
-<pre><code>function Parent(name) {
-    this.colors = [&apos;white&apos;, &apos;black&apos;, &apos;green&apos;];
-    this.name = name
-}
-
-function Child(name) {
-    // 完成了继承，同时还实现了传递参数
-    Parent.call(this, &apos;Nickle&apos;);
-}
-
-var child1 = new Child();
-child1.colors.push(&apos;red&apos;);
-console.log(child1.colors); // [&quot;white&quot;, &quot;black&quot;, &quot;green&quot;, &quot;red&quot;]
-
-var child2 = new Child();
-console.log(child2.colors); // [&quot;white&quot;, &quot;black&quot;, &quot;green&quot;]
-</code></pre></li>
-<li>缺点：函数无法复用。</li>
+<li>实例</li>
 </ul>
 </li>
+</ul>
+<pre><code>        function Parent(name) {
+            this.colors = [&apos;white&apos;, &apos;black&apos;, &apos;green&apos;];
+            this.name = name
+        }
+
+        function Child(name) {
+            // 完成了继承，同时还实现了传递参数
+            Parent.call(this, &apos;Nickle&apos;);
+        }
+
+        var child1 = new Child();
+        child1.colors.push(&apos;red&apos;);
+        console.log(child1.colors); // [&quot;white&quot;, &quot;black&quot;, &quot;green&quot;, &quot;red&quot;]
+
+        var child2 = new Child();
+        console.log(child2.colors); // [&quot;white&quot;, &quot;black&quot;, &quot;green&quot;]
+* 缺点：函数无法复用。
+</code></pre><ul>
 <li><p>组合式继承：使用原型和借用构造函数</p>
 <ul>
 <li><p>实例</p>
@@ -534,6 +534,10 @@ child2.sayAge(); // 27
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">微信公众号支付</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
@@ -550,19 +554,15 @@ child2.sayAge(); // 27
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信公众号支付</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">正则</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">less</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
               </li>
             
             <div class="clearfix"></div>
