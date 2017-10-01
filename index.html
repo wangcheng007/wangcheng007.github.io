@@ -169,21 +169,18 @@
         <h3 id="js面向对象程序设计——几种创建对象的方式"><a href="#js面向对象程序设计——几种创建对象的方式" class="headerlink" title="js面向对象程序设计——几种创建对象的方式"></a>js面向对象程序设计——几种创建对象的方式</h3><blockquote>
 <p>刚好最近有笔试题说说js几种创建对象的模式，便写一写，理一理</p>
 </blockquote>
-<h5 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h5><ul>
-<li><p>对象字面量</p>
-<p>  var obj = {</p>
-<pre><code>hour: 12,
-day: 13,
-getTime: function(){
-    console.log(new Date());
+<h5 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h5><p>1 对象字面量</p>
+<pre><code>var obj = {
+    hour: 12,
+    day: 13,
+    getTime: function(){
+        console.log(new Date());
+    }
 }
-</code></pre><p>  }</p>
-</li>
-<li><p>创建Object实例</p>
-<p>  var obj = new Object();<br>  obj.hour = 10;</p>
-</li>
-</ul>
-<h5 id="对象创建模式"><a href="#对象创建模式" class="headerlink" title="对象创建模式"></a>对象创建模式</h5><p>1.工厂模式  </p>
+</code></pre><p>2 创建Object实例</p>
+<pre><code>var obj = new Object();
+obj.hour = 10;
+</code></pre><h5 id="对象创建模式"><a href="#对象创建模式" class="headerlink" title="对象创建模式"></a>对象创建模式</h5><p>1.工厂模式  </p>
 <ul>
 <li>概念：工厂模式是软件工程领域一种广为人知的设计模式，这种模式，抽象了具体的创建过程。</li>
 <li>优点：解决了创建多个相似对象的问题</li>
