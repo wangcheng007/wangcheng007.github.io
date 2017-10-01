@@ -38,7 +38,7 @@ var obj = {
 }
 2 创建Object实例
 var obj = new Ob">
-<meta property="og:updated_time" content="2017-10-01T06:26:30.622Z">
+<meta property="og:updated_time" content="2017-10-01T06:30:35.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js基础整理八————创建对象模式">
 <meta name="twitter:description" content="js面向对象程序设计——几种创建对象的方式
@@ -220,20 +220,19 @@ obj.hour = 10;
 <li>概念：工厂模式是软件工程领域一种广为人知的设计模式，这种模式，抽象了具体的创建过程。</li>
 <li>优点：解决了创建多个相似对象的问题</li>
 <li>缺点：没有解决对象的识别问题</li>
-<li><p>实现</p>
-<p>  function createPerson(name, age, job){</p>
-<pre><code>var o = new Object();
-o.name = name;
-o.age = age;
-o.job = job;
-o.sayName = function(){
-    console.log(this.name);
-}
-return o;
-</code></pre><p>  }</p>
-</li>
+<li>实现</li>
 </ul>
-<p>2.构造函数模式</p>
+<pre><code>function createPerson(name, age, job){
+    var o = new Object();
+    o.name = name;
+    o.age = age;
+    o.job = job;
+    o.sayName = function(){
+        console.log(this.name);
+    }
+    return o;
+}
+</code></pre><p>2.构造函数模式</p>
 <ul>
 <li>与createPerson对比：<ul>
 <li>1.没有显式地创建对象；</li>
