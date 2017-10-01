@@ -12,21 +12,16 @@
 刚好最近有笔试题说说js几种创建对象的模式，便写一写，理一理
 
 创建对象
-对象字面量
-
-
-var obj = {
-    hour: 12,
-    day: 13,
-    getTime: function(){
-        console.log(new Date());
-    }
-}
-
-创建Object实例
-
-
-var obj = new">
+对象字面量  
+  var obj = {
+      hour: 12,
+      day: 13,
+      getTime: function(){
+          console.log(new Date());
+      }
+  }
+  
+创建Object实例">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js基础整理八————创建对象模式">
 <meta property="og:url" content="http://wangcheng007.github.io/2017/09/29/jsCreateObject/index.html">
@@ -35,43 +30,33 @@ var obj = new">
 刚好最近有笔试题说说js几种创建对象的模式，便写一写，理一理
 
 创建对象
-对象字面量
-
-
-var obj = {
-    hour: 12,
-    day: 13,
-    getTime: function(){
-        console.log(new Date());
-    }
-}
-
-创建Object实例
-
-
-var obj = new">
-<meta property="og:updated_time" content="2017-10-01T04:55:57.550Z">
+对象字面量  
+  var obj = {
+      hour: 12,
+      day: 13,
+      getTime: function(){
+          console.log(new Date());
+      }
+  }
+  
+创建Object实例">
+<meta property="og:updated_time" content="2017-10-01T05:09:52.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js基础整理八————创建对象模式">
 <meta name="twitter:description" content="js面向对象程序设计——几种创建对象的方式
 刚好最近有笔试题说说js几种创建对象的模式，便写一写，理一理
 
 创建对象
-对象字面量
-
-
-var obj = {
-    hour: 12,
-    day: 13,
-    getTime: function(){
-        console.log(new Date());
-    }
-}
-
-创建Object实例
-
-
-var obj = new">
+对象字面量  
+  var obj = {
+      hour: 12,
+      day: 13,
+      getTime: function(){
+          console.log(new Date());
+      }
+  }
+  
+创建Object实例">
   
     <link rel="alternative" href="/atom.xml" title="我爱吃包子的博客" type="application/atom+xml">
   
@@ -223,61 +208,38 @@ var obj = new">
 <p>刚好最近有笔试题说说js几种创建对象的模式，便写一写，理一理</p>
 </blockquote>
 <h5 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h5><ul>
-<li>对象字面量</li>
-</ul>
-<hr>
-<pre><code>var obj = {
-    hour: 12,
-    day: 13,
-    getTime: function(){
-        console.log(new Date());
-    }
-}
-</code></pre><ul>
-<li>创建Object实例</li>
-</ul>
-<hr>
-<pre><code>var obj = new Object();
-obj.hour = 10;
-</code></pre><h5 id="对象创建模式"><a href="#对象创建模式" class="headerlink" title="对象创建模式"></a>对象创建模式</h5><ul>
-<li><p>工厂模式</p>
-<ul>
+<li>对象字面量  <pre><code>
+  var obj = {
+      hour: 12,
+      day: 13,
+      getTime: function(){
+          console.log(new Date());
+      }
+  }
+  </code></pre></li>
+<li><p>创建Object实例</p>
+<p>  <pre><code><br>  var obj = new Object();<br>  obj.hour = 10;<br>  </code></pre></p>
+<h5 id="对象创建模式"><a href="#对象创建模式" class="headerlink" title="对象创建模式"></a>对象创建模式</h5></li>
+<li>工厂模式<ul>
 <li>概念：工厂模式是软件工程领域一种广为人知的设计模式，这种模式，抽象了具体的创建过程。</li>
-<li>实现</li>
-</ul>
-<hr>
-<pre><code>function createPerson(name, age, job){
-    var o = new Object();
-    o.name = name;
-    o.age = age;
-    o.job = job;
-    o.sayName = function(){
-        console.log(this.name);
-    }
-    return o;
-}
-</code></pre><ul>
 <li>优点：解决了创建多个相似对象的问题</li>
 <li>缺点：没有解决对象的识别问题</li>
+<li>实现<pre><code>
+function createPerson(name, age, job){
+  var o = new Object();
+  o.name = name;
+  o.age = age;
+  o.job = job;
+  o.sayName = function(){
+      console.log(this.name);
+  }
+  return o;
+}
+</code></pre></li>
 </ul>
 </li>
 <li><p>构造函数模式</p>
 <ul>
-<li>实现：</li>
-</ul>
-<hr>
-<pre><code>function Person(name, age, job){
-    this.name = name;
-    this.age = age;
-    this.job = job;
-    this.sayName = function(){
-        console.log(this.name);
-    }
-}
-
-var person1 = new Person(&apos;555&apos;, 55, &apos;666&apos;);
-var person1 = new Person(&apos;666&apos;, 66, &apos;555&apos;);  
-</code></pre><ul>
 <li>与createPerson对比：<ul>
 <li>1.没有显式地创建对象；</li>
 <li>2.直接将属性和方法赋值给this对象；</li>
@@ -293,34 +255,41 @@ var person1 = new Person(&apos;666&apos;, 66, &apos;555&apos;);
 </li>
 <li>对象的识别，使用instanceof</li>
 <li>优点：创建自定义的构造函数对象意味着未来可以将它的实例标识为一种特定的类型。</li>
-<li>缺点：每个方法都要在每个实例上重新创建一遍，即personal1和persoanal2都有一个名为sayName()的方法，但那两个方法不是同一个Function的实例，虽然可以使用定义全局方法例如</li>
-</ul>
-<hr>
-<pre><code>function Personal(name, age, job){
-    this.sayName = sayName;
+<li><p>缺点：每个方法都要在每个实例上重新创建一遍，即personal1和persoanal2都有一个名为sayName()的方法，但那两个方法不是同一个Function的实例，虽然可以使用定义全局方法例如</p>
+<p><pre><code><br>function Personal(name, age, job){<br>  this.sayName = sayName;<br>}</code></pre></p>
+<p>function sayName(){<br>  cossole.log(this.name);<br>}<br><br>这样虽然可以解决上面的问题，可是当方法越来越多就会显得很混乱而且丝毫没有封装性可言。</p>
+</li>
+<li><p>实现：</p>
+<pre><code>
+function Person(name, age, job){
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.sayName = function(){
+      console.log(this.name);
+  }
 }
 
-function sayName(){
-    cossole.log(this.name);
-}
-</code></pre><p>  这样虽然可以解决上面的问题，可是当方法越来越多就会显得很混乱而且丝毫没有封装性可言。</p>
+var person1 = new Person('555', 55, '666');
+var person1 = new Person('666', 66, '555');
+</code></pre>  </li>
+</ul>
 </li>
 <li><p>原型模式</p>
 <ul>
 <li>实现的根据：每个函数都有一个prototype属性，这个属性时一个指针，指向一个对象，对象都具有可扩展属性。</li>
-<li>实现：</li>
-</ul>
-<hr>
-<pre><code>function Perosn(){
+<li><p>实现：</p>
+<pre><code>
+function Perosn(){
 }
 
-Perosn.prototype.name = &apos;mark&apos;;
+Perosn.prototype.name = 'mark';
 Perosn.prototype.age = 29;
-Perosn.prototype.job = &apos;enlish&apos;;
+Perosn.prototype.job = 'enlish';
 Perosn.prototype.sayName = function(){
-    console.log(this.name);
+  console.log(this.name);
 }
-</code></pre><ul>
+</code></pre></li>
 <li>理解：理解原型对象，可以查看我以前的内容</li>
 <li>优点：解决了上面定义多个方法的问题，让多个对象的方法指向同一个Function实例</li>
 <li>缺点：对象没有自己的属性，每次改动原型模式中的属性，其他对象额属性也会跟着改变</li>
@@ -329,23 +298,24 @@ Perosn.prototype.sayName = function(){
 <li><p>组合使用构造函数模式和原型模式</p>
 <ul>
 <li>比较容易理解，就是将构造函数和原型模式结合起来，构造函数有自己的属性，使用原型扩展公用方法</li>
-<li>实现</li>
-</ul>
-<hr>
-<pre><code>function Person(name. age, job){
-    this.name = name;
-    this.age = age;
-    this.job = job;
-    this.friends = [&apos;Geroy&apos;, &apos;Scout&apos;];
+<li><p>实现</p>
+<pre><code>
+function Person(name. age, job){
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.friends = ['Geroy', 'Scout'];
 }
 
 Person.prototype = {
-    constructor: Person,
-    sayName:  function(){
-        console,log(name);
-    }
+  constructor: Person,
+  sayName:  function(){
+      console,log(name);
+  }
 }
 </code></pre></li>
+</ul>
+</li>
 </ul>
 
       
@@ -557,11 +527,7 @@ Person.prototype = {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">整理复习</a>
+                <a href="javascript:void(0)" class="js-tag color3">微信公众号支付</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,11 +539,11 @@ Person.prototype = {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信公众号支付</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">正则</a>
+                <a href="javascript:void(0)" class="js-tag color5">整理复习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,6 +552,10 @@ Person.prototype = {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
               </li>
             
             <div class="clearfix"></div>
