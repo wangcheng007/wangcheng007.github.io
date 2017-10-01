@@ -13,22 +13,7 @@
 说明this的集中不同场景
 创建10个标签，点击时弹出对应的序号
 如何理解作用域
-实际开发中闭包的应用
-
-知识点
-执行上下文
-
-范围： 一段或者一个函数
-全局：变量定义、函数声明
-函数： 变量定义、函数声明、this、arguments
-console.log(a); // undefined
-var a = 100;
-
-
-
-this
-
-this">
+实际开发中闭包的应用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js基础整理三————作用域和闭包">
 <meta property="og:url" content="http://wangcheng007.github.io/2017/09/29/js_3/index.html">
@@ -38,23 +23,8 @@ this">
 说明this的集中不同场景
 创建10个标签，点击时弹出对应的序号
 如何理解作用域
-实际开发中闭包的应用
-
-知识点
-执行上下文
-
-范围： 一段或者一个函数
-全局：变量定义、函数声明
-函数： 变量定义、函数声明、this、arguments
-console.log(a); // undefined
-var a = 100;
-
-
-
-this
-
-this">
-<meta property="og:updated_time" content="2017-09-29T07:00:35.508Z">
+实际开发中闭包的应用">
+<meta property="og:updated_time" content="2017-10-01T08:59:30.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js基础整理三————作用域和闭包">
 <meta name="twitter:description" content="js 作用域和闭包抛出问题
@@ -62,22 +32,7 @@ this">
 说明this的集中不同场景
 创建10个标签，点击时弹出对应的序号
 如何理解作用域
-实际开发中闭包的应用
-
-知识点
-执行上下文
-
-范围： 一段或者一个函数
-全局：变量定义、函数声明
-函数： 变量定义、函数声明、this、arguments
-console.log(a); // undefined
-var a = 100;
-
-
-
-this
-
-this">
+实际开发中闭包的应用">
   
     <link rel="alternative" href="/atom.xml" title="我爱吃包子的博客" type="application/atom+xml">
   
@@ -232,19 +187,16 @@ this">
 <li>如何理解作用域</li>
 <li>实际开发中闭包的应用</li>
 </ul>
-<h5 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h5><ul>
-<li><p>执行上下文</p>
+<a id="more"></a>
+<h5 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h5><p>1 执行上下文</p>
 <ul>
 <li>范围： 一段<script\>或者一个函数</script\></li>
 <li>全局：变量定义、函数声明</li>
 <li><p>函数： 变量定义、函数声明、this、arguments</p>
 <pre><code>console.log(a); // undefined
 var a = 100;
-</code></pre></li>
-</ul>
+</code></pre><p>2 this</p>
 </li>
-<li><p>this</p>
-<ul>
 <li><p>this 要在执行时才能确定，定义时无法确定</p>
 <pre><code>var a = {
     name: &apos;A&apos;,
@@ -263,31 +215,28 @@ fn1() // this === window
 <li>作为普通函数执行</li>
 <li>call apply bind</li>
 </ul>
-</li>
-<li>作用域<ul>
+<p>3 作用域</p>
+<ul>
 <li>没有块级作用域</li>
 <li>函数和全局作用域</li>
 <li>函数作用域在定义是确定</li>
 </ul>
-</li>
-<li>作用域链<ul>
+<p>4 作用域链</p>
+<ul>
 <li>自由变量，当前作用域没有定义的变量 </li>
 </ul>
-</li>
-<li>闭包<ul>
+<p>5 闭包</p>
+<ul>
 <li>函数作为返回值</li>
 <li>函数作为参数传递</li>
 </ul>
-</li>
-</ul>
-<h5 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h5><ul>
-<li>说一下对变量提升的理解<ul>
+<h5 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h5><p>1 说一下对变量提升的理解</p>
+<ul>
 <li>变量定义</li>
 <li>函数声明</li>
 </ul>
-</li>
-<li>说明this的集中不同场景</li>
-<li><p>创建10个<a\>标签，点击时弹出对应的序号</a\></p>
+<p>2 说明this的集中不同场景</p>
+<p>3 创建10个<a\>标签，点击时弹出对应的序号</a\></p>
 <pre><code>for(var i = 0; i &lt; 10; i++){
     (function ())(i)
     a = document.creatElement(&apos;a&apos;);
@@ -297,14 +246,12 @@ fn1() // this === window
         alert(i);
     })
 }
-</code></pre></li>
-<li>如何理解作用域<ul>
+</code></pre><p>4 如何理解作用域</p>
+<ul>
 <li>自由变量</li>
 <li>作用域链，即自由变量的查找</li>
 </ul>
-</li>
-<li>实际开发中闭包的应用</li>
-</ul>
+<p>5 实际开发中闭包的应用</p>
 
       
 

@@ -6,55 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wangcheng007.github.io">
-  <title>js基础整理七————事件 | 我爱吃包子的博客</title>
+  <title>js基础整理七————事件和Ajax | 我爱吃包子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="js事件题目
 编写一个通用的事件监听函数
 描述事件冒泡的流程
-对于一个无限下拉加载图片的页面，如何给每个图片绑定事件
-
-知识点
-通用事件绑定
-btn.addEventListener(&amp;apos;click&amp;apos;, function (event){
-    e.preventDefault(); 
-    console.log(&amp;apos;clicked&amp;apos;);
-});
-
-IE低">
+对于一个无限下拉加载图片的页面，如何给每个图片绑定事件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js基础整理七————事件">
+<meta property="og:title" content="js基础整理七————事件和Ajax">
 <meta property="og:url" content="http://wangcheng007.github.io/2017/09/29/js_7/index.html">
 <meta property="og:site_name" content="我爱吃包子的博客">
 <meta property="og:description" content="js事件题目
 编写一个通用的事件监听函数
 描述事件冒泡的流程
-对于一个无限下拉加载图片的页面，如何给每个图片绑定事件
-
-知识点
-通用事件绑定
-btn.addEventListener(&amp;apos;click&amp;apos;, function (event){
-    e.preventDefault(); 
-    console.log(&amp;apos;clicked&amp;apos;);
-});
-
-IE低">
+对于一个无限下拉加载图片的页面，如何给每个图片绑定事件">
 <meta property="og:image" content="http://wangcheng007.github.io/2017/09/29/js_7/xxx">
-<meta property="og:updated_time" content="2017-09-29T07:02:47.491Z">
+<meta property="og:updated_time" content="2017-10-01T09:12:21.889Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js基础整理七————事件">
+<meta name="twitter:title" content="js基础整理七————事件和Ajax">
 <meta name="twitter:description" content="js事件题目
 编写一个通用的事件监听函数
 描述事件冒泡的流程
-对于一个无限下拉加载图片的页面，如何给每个图片绑定事件
-
-知识点
-通用事件绑定
-btn.addEventListener(&amp;apos;click&amp;apos;, function (event){
-    e.preventDefault(); 
-    console.log(&amp;apos;clicked&amp;apos;);
-});
-
-IE低">
+对于一个无限下拉加载图片的页面，如何给每个图片绑定事件">
 <meta name="twitter:image" content="http://wangcheng007.github.io/2017/09/29/js_7/xxx">
   
     <link rel="alternative" href="/atom.xml" title="我爱吃包子的博客" type="application/atom+xml">
@@ -190,7 +163,7 @@ IE低">
         
   
     <h1 class="article-title" itemprop="name">
-      js基础整理七————事件
+      js基础整理七————事件和Ajax
     </h1>
   
 
@@ -208,34 +181,26 @@ IE低">
 <li>描述事件冒泡的流程</li>
 <li>对于一个无限下拉加载图片的页面，如何给每个图片绑定事件</li>
 </ul>
-<h5 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h5><ul>
-<li><p>通用事件绑定</p>
+<a id="more"></a>
+<h5 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h5><p>1 通用事件绑定</p>
 <pre><code>btn.addEventListener(&apos;click&apos;, function (event){
     e.preventDefault(); 
     console.log(&apos;clicked&apos;);
 });
 </code></pre><ul>
-<li>IE低版本兼容，attachEvent绑定事件</li>
+<li>IE低版本兼容，attachEvent绑定事件<br>2 事件冒泡<br>  e.stopPropatation();// 阻止冒泡<br>3 代理</li>
 </ul>
-</li>
-<li>事件冒泡<pre><code>e.stopPropatation();// 阻止冒泡
-</code></pre></li>
-<li>代理</li>
-</ul>
-<h5 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h5><ul>
-<li>编写一个通用的事件监听函数</li>
-<li>描述事件冒泡的流程<ul>
+<h5 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h5><p>1 编写一个通用的事件监听函数</p>
+<p>2 描述事件冒泡的流程</p>
+<ul>
 <li>沿着dom树往上找</li>
 </ul>
-</li>
-<li>对于一个无限下拉加载图片的页面，如何给每个图片绑定事件</li>
-</ul>
+<p>3 对于一个无限下拉加载图片的页面，如何给每个图片绑定事件</p>
 <h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><h5 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h5><ul>
 <li>手动编写ajax，不依赖第三方库</li>
 <li>跨域的几种实现方式</li>
 </ul>
-<h5 id="知识点-1"><a href="#知识点-1" class="headerlink" title="知识点"></a>知识点</h5><ul>
-<li><p>XMLHttpREquest</p>
+<h5 id="知识点-1"><a href="#知识点-1" class="headerlink" title="知识点"></a>知识点</h5><p>1 XMLHttpREquest</p>
 <pre><code>var xhr = new XMLHttpRequest();
 xhr.open(&apos;GET&apos;, &apos;/api&apos;, false);
 xhr.onreadystatechange = function() {
@@ -249,8 +214,8 @@ xhr.send(null);
 </code></pre><ul>
 <li>IE低版本使用ActiveXObject</li>
 </ul>
-</li>
-<li>状态码说明<ul>
+<p>2 状态码说明</p>
+<ul>
 <li>0 - (未初始化) 还没有调用send() 方法</li>
 <li>1 - (载入) 已调用send方法，正在发送</li>
 <li>2 - (载入完成) send方法执行完成</li>
@@ -261,13 +226,14 @@ xhr.send(null);
 <li>4xx - 客户端请求错误，如404</li>
 <li>5xx - 服务器端错误 </li>
 </ul>
-</li>
-<li><p>跨域</p>
+<p>3 跨域  </p>
 <ul>
 <li><p>什么是跨域</p>
-<pre><code>浏览器的同源策略，不允许ajax访问其他域接口
-跨域条件：协议，域名，端口，有一个不同就算跨域
-</code></pre><ul>
+<ul>
+<li>浏览器的同源策略，不允许ajax访问其他域接口</li>
+<li>跨域条件：协议，域名，端口，有一个不同就算跨域</li>
+</ul>
+<ul>
 <li>三个标签可以使用跨域<img src="/2017/09/29/js_7/xxx" \=""> <link href="xxxx" \=""><script src="xxx" \=""></li>
 <li><img>用于打点统计，统计网站可能是其他域</li>
 </ul>
@@ -275,40 +241,38 @@ xhr.send(null);
 <li><p>JSONP</p>
 <ul>
 <li><p>实现原理</p>
-<pre><code>加载http://baozi.com/index.html
-不一定服务器端真正有一个index.html文件
-服务器可以根据请求，动态生成一个文件返回
-同理于&lt;script src=&apos;http://baozi.com/spi.js&apos;&gt;
-</code></pre></li>
-<li>参会内容的格式 callback({x:100, y:200})</li>
+<p>  1 加载<a href="http://baozi.com/index.html">http://baozi.com/index.html</a><br>  2 不一定服务器端真正有一个index.html文件<br>  3 服务器可以根据请求，动态生成一个文件返回<br>  4 同理于<script src='http://baozi.com/spi.js'>  </p>
+</li>
+<li><p>参会内容的格式 callback({x:100, y:200})</p>
+</li>
 </ul>
 </li>
+</ul>
+<ul>
 <li>服务器端设置http header</li>
+</ul>
+<ul>
 <li>注意事项<ul>
 <li>所有的跨域请求都必须经过信息提供方允许</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
 <h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><h5 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h5><ul>
 <li>cookie，sessionSorage和localStorage的区别</li>
 </ul>
-<h5 id="知识点-2"><a href="#知识点-2" class="headerlink" title="知识点"></a>知识点</h5><ul>
-<li>cookie<ul>
+<h5 id="知识点-2"><a href="#知识点-2" class="headerlink" title="知识点"></a>知识点</h5><p>1 cookie  </p>
+<ul>
 <li>本身用于客户端和服务器端通信</li>
 <li>但是它有本地存储的功能，于是就被“借用”</li>
 <li>使用document.cookie=… 获取和修改即可</li>
 <li>存储量太小，只有4kb</li>
-<li>所有http请求都带着，会影响获取资源的效率</li>
+<li>所有http请求都带着，会影响获取资源的效率  </li>
 </ul>
-</li>
-<li>localStorage 和 sessionStorage<ul>
+<p>2 localStorage 和 sessionStorage  </p>
+<ul>
 <li>HTML5 专门为存储而设计，最大容量5M</li>
 <li>API简单易用</li>
 <li>localStorage.setItem(key, value);localStorage.getItem(key);</li>
-</ul>
-</li>
 </ul>
 <h5 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h5><ul>
 <li>cookie，sessionSorage和localStorage的区别<ul>
@@ -318,7 +282,7 @@ xhr.send(null);
 </ul>
 </li>
 </ul>
-</script></li></ul></li></ul></li></ul>
+</script></li></ul></li></ul>
       
 
       

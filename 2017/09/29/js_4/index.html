@@ -11,24 +11,7 @@
   <meta name="description" content="异步抛出问题
 同步和异步的区别
 一个关于setTimeout的笔试题
-前端使用异步的场景有哪些
-
-知识点
-什么是异步（对比同步）
-同步阻塞
-异步不阻塞
-
-
-前端使用异步的场景
-定时任务： setTimeout, setInvercal
-网络请求： ajax请求，动态加载
-事件绑定
-
-
-异步和单线程
-console.log(100);
-setTimeout(function(){
-    conso">
+前端使用异步的场景有哪些">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js基础整理四————异步，单线程">
 <meta property="og:url" content="http://wangcheng007.github.io/2017/09/29/js_4/index.html">
@@ -36,48 +19,14 @@ setTimeout(function(){
 <meta property="og:description" content="异步抛出问题
 同步和异步的区别
 一个关于setTimeout的笔试题
-前端使用异步的场景有哪些
-
-知识点
-什么是异步（对比同步）
-同步阻塞
-异步不阻塞
-
-
-前端使用异步的场景
-定时任务： setTimeout, setInvercal
-网络请求： ajax请求，动态加载
-事件绑定
-
-
-异步和单线程
-console.log(100);
-setTimeout(function(){
-    conso">
-<meta property="og:updated_time" content="2017-09-29T07:01:12.252Z">
+前端使用异步的场景有哪些">
+<meta property="og:updated_time" content="2017-10-01T09:06:40.874Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js基础整理四————异步，单线程">
 <meta name="twitter:description" content="异步抛出问题
 同步和异步的区别
 一个关于setTimeout的笔试题
-前端使用异步的场景有哪些
-
-知识点
-什么是异步（对比同步）
-同步阻塞
-异步不阻塞
-
-
-前端使用异步的场景
-定时任务： setTimeout, setInvercal
-网络请求： ajax请求，动态加载
-事件绑定
-
-
-异步和单线程
-console.log(100);
-setTimeout(function(){
-    conso">
+前端使用异步的场景有哪些">
   
     <link rel="alternative" href="/atom.xml" title="我爱吃包子的博客" type="application/atom+xml">
   
@@ -230,19 +179,19 @@ setTimeout(function(){
 <li>一个关于setTimeout的笔试题</li>
 <li>前端使用异步的场景有哪些</li>
 </ul>
-<h5 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h5><ul>
-<li>什么是异步（对比同步）<ul>
+<a id="more"></a>
+<h5 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h5><p>1 什么是异步（对比同步）</p>
+<ul>
 <li>同步阻塞</li>
 <li>异步不阻塞</li>
 </ul>
-</li>
-<li>前端使用异步的场景<ul>
+<p>2 前端使用异步的场景</p>
+<ul>
 <li>定时任务： setTimeout, setInvercal</li>
 <li>网络请求： ajax请求，动态<img\>加载</img\></li>
 <li>事件绑定</li>
 </ul>
-</li>
-<li><p>异步和单线程</p>
+<p>3 异步和单线程</p>
 <pre><code>console.log(100);
 setTimeout(function(){
     console.log(200);
@@ -255,8 +204,20 @@ console.log(300);
 <li>待所有程序执行完，处于空闲状态，会立马看有没有暂存起来的要执行</li>
 <li>发现暂存起来的setTimeout中函数无等待时间，就立即执行</li>
 </ul>
-</li>
+<h5 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h5><p>1 同步和异步的区别</p>
+<ul>
+<li>见上</li>
 </ul>
+<p>2 一个关于setTimeout的笔试题  </p>
+<pre><code>for(var i = 0; i &lt; 499999999l; i++){
+    console.log(&apos;first);
+    setTimeout(
+        function(){
+            console.log(&apos;second&apos;)
+        }, 5000);
+}
+</code></pre><p>输出什么: 先输出所有的first 在输出所有的second</p>
+<p>3 前端使用异步的场景有哪些</p>
 
       
 
