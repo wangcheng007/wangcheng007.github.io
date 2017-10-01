@@ -170,77 +170,83 @@
 <p>刚好最近有笔试题说说js几种创建对象的模式，便写一写，理一理</p>
 </blockquote>
 <h5 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h5><ul>
-<li>对象字面量  <pre><code>
-  var obj = {
-      hour: 12,
-      day: 13,
-      getTime: function(){
-          console.log(new Date());
-      }
+<li>对象字面量<pre><code>
+var obj = {
+  hour: 12,
+  day: 13,
+  getTime: function(){
+      console.log(new Date());
   }
-  </code></pre></li>
-<li><p>创建Object实例</p>
-<p>  <pre><code><br>  var obj = new Object();<br>  obj.hour = 10;<br>  </code></pre></p>
-<h5 id="对象创建模式"><a href="#对象创建模式" class="headerlink" title="对象创建模式"></a>对象创建模式</h5></li>
-<li>工厂模式<ul>
-<li>概念：工厂模式是软件工程领域一种广为人知的设计模式，这种模式，抽象了具体的创建过程。</li>
-<li>优点：解决了创建多个相似对象的问题</li>
-<li>缺点：没有解决对象的识别问题</li>
-<li>实现<pre><code>
-function createPerson(name, age, job){
-  var o = new Object();
-  o.name = name;
-  o.age = age;
-  o.job = job;
-  o.sayName = function(){
-      console.log(this.name);
-  }
-  return o;
 }
 </code></pre></li>
+<li>创建Object实例</li>
 </ul>
-</li>
-<li><p>构造函数模式</p>
-<ul>
-<li>与createPerson对比：<ul>
-<li>1.没有显式地创建对象；</li>
-<li>2.直接将属性和方法赋值给this对象；</li>
-<li>3.没有return语句。</li>
-</ul>
-</li>
-<li>要创建Person的新实例，使用new操作符实际会发生以下四个步骤<ul>
-<li>创建一个对象</li>
-<li>将构造函数的作用域赋值给新的对象（因此this就指向了这个新对象）</li>
-<li>执行构造函数中的代码</li>
-<li>返回新对象</li>
-</ul>
-</li>
-<li>对象的识别，使用instanceof</li>
-<li>优点：创建自定义的构造函数对象意味着未来可以将它的实例标识为一种特定的类型。</li>
-<li><p>缺点：每个方法都要在每个实例上重新创建一遍，即personal1和persoanal2都有一个名为sayName()的方法，但那两个方法不是同一个Function的实例，虽然可以使用定义全局方法例如</p>
-<p><pre><code><br>function Personal(name, age, job){<br>  this.sayName = sayName;<br>}</code></pre></p>
-<p>function sayName(){<br>  cossole.log(this.name);<br>}<br><br>这样虽然可以解决上面的问题，可是当方法越来越多就会显得很混乱而且丝毫没有封装性可言。</p>
-</li>
-<li><p>实现：</p>
+<pre><code>
+var obj = new Object();
+obj.hour = 10;
+</code></pre>
+##### 对象创建模式
+* 工厂模式
+    * 概念：工厂模式是软件工程领域一种广为人知的设计模式，这种模式，抽象了具体的创建过程。
+    * 优点：解决了创建多个相似对象的问题
+    * 缺点：没有解决对象的识别问题
+    * 实现
+<pre><code>
+function createPerson(name, age, job){
+    var o = new Object();
+    o.name = name;
+    o.age = age;
+    o.job = job;
+    o.sayName = function(){
+        console.log(this.name);
+    }
+    return o;
+}
+</code></pre>
+* 构造函数模式
+
+    - 与createPerson对比：
+        * 1.没有显式地创建对象；
+        * 2.直接将属性和方法赋值给this对象；
+        * 3.没有return语句。
+    - 要创建Person的新实例，使用new操作符实际会发生以下四个步骤
+        * 创建一个对象
+        * 将构造函数的作用域赋值给新的对象（因此this就指向了这个新对象）
+        * 执行构造函数中的代码
+        * 返回新对象
+    - 对象的识别，使用instanceof
+    - 优点：创建自定义的构造函数对象意味着未来可以将它的实例标识为一种特定的类型。
+    - 缺点：每个方法都要在每个实例上重新创建一遍，即personal1和persoanal2都有一个名为sayName()的方法，但那两个方法不是同一个Function的实例，虽然可以使用定义全局方法例如
+
+<pre><code>
+function Personal(name, age, job){
+    this.sayName = sayName;
+}
+
+function sayName(){
+    cossole.log(this.name);
+}
+</code></pre>
+    这样虽然可以解决上面的问题，可是当方法越来越多就会显得很混乱而且丝毫没有封装性可言。
+    - 实现：
+
 <pre><code>
 function Person(name, age, job){
-  this.name = name;
-  this.age = age;
-  this.job = job;
-  this.sayName = function(){
-      console.log(this.name);
-  }
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.sayName = function(){
+        console.log(this.name);
+    }
 }
 
 var person1 = new Person('555', 55, '666');
 var person1 = new Person('666', 66, '555');
-</code></pre>  </li>
-</ul>
-</li>
-<li><p>原型模式</p>
-<ul>
-<li>实现的根据：每个函数都有一个prototype属性，这个属性时一个指针，指向一个对象，对象都具有可扩展属性。</li>
-<li><p>实现：</p>
+</code></pre>  
+* 原型模式
+    - 实现的根据：每个函数都有一个prototype属性，这个属性时一个指针，指向一个对象，对象都具有可扩展属性。
+    - 实现：
+
 <pre><code>
 function Perosn(){
 }
@@ -249,37 +255,32 @@ Perosn.prototype.name = 'mark';
 Perosn.prototype.age = 29;
 Perosn.prototype.job = 'enlish';
 Perosn.prototype.sayName = function(){
-  console.log(this.name);
+    console.log(this.name);
 }
-</code></pre></li>
-<li>理解：理解原型对象，可以查看我以前的内容</li>
-<li>优点：解决了上面定义多个方法的问题，让多个对象的方法指向同一个Function实例</li>
-<li>缺点：对象没有自己的属性，每次改动原型模式中的属性，其他对象额属性也会跟着改变</li>
-</ul>
-</li>
-<li><p>组合使用构造函数模式和原型模式</p>
-<ul>
-<li>比较容易理解，就是将构造函数和原型模式结合起来，构造函数有自己的属性，使用原型扩展公用方法</li>
-<li><p>实现</p>
+</code></pre>
+    - 理解：理解原型对象，可以查看我以前的内容
+    - 优点：解决了上面定义多个方法的问题，让多个对象的方法指向同一个Function实例
+    - 缺点：对象没有自己的属性，每次改动原型模式中的属性，其他对象额属性也会跟着改变
+
+* 组合使用构造函数模式和原型模式
+    - 比较容易理解，就是将构造函数和原型模式结合起来，构造函数有自己的属性，使用原型扩展公用方法
+    - 实现
+
 <pre><code>
 function Person(name. age, job){
-  this.name = name;
-  this.age = age;
-  this.job = job;
-  this.friends = ['Geroy', 'Scout'];
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.friends = ['Geroy', 'Scout'];
 }
 
 Person.prototype = {
-  constructor: Person,
-  sayName:  function(){
-      console,log(name);
-  }
+    constructor: Person,
+    sayName:  function(){
+        console,log(name);
+    }
 }
-</code></pre></li>
-</ul>
-</li>
-</ul>
-
+</code></pre>
       
 
       
